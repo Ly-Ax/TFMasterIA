@@ -1,0 +1,11 @@
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Environments
+venv/
+
+# Mac Files
+.DS_Store
+
+# Large Dataset
+sba_national.csv
