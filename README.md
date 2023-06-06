@@ -1,22 +1,22 @@
-<img src="images/viu_cabecera.webp" width="200px">
+<img align="right" src="images/viu_cabecera.webp" width="230px">
 
-# Máster en Inteligencia Artificial
+# <br> Máster en Inteligencia Artificial <br><br>
 
 ## TFM: Comparación de Algoritmos de DL frente a Algoritmos de ML Clásicos <br> Caso: Aprobación de Préstamos de la U.S. Small Business Administration (SBA)
 
 [**Alex Castro Gumiel**](https://www.linkedin.com/in/alex-castro-gumiel/)
 
-> ### Conjunto de Datos
+### Conjunto de Datos
 
 https://www.kaggle.com/datasets/mirbektoktogaraev/should-this-loan-be-approved-or-denied
 
-**Contexto:**
+> Contexto
 
 El conjunto de datos es de la Administración de Pequeñas Empresas de EE.UU. (SBA). La SBA de EE.UU. se fundó en 1953 con el principio de promover y ayudar a las pequeñas empresas en el mercado crediticio de EE.UU. Las pequeñas empresas han sido una fuente principal de creación de empleo en los Estados Unidos; por lo tanto, fomentar la formación y el crecimiento de pequeñas empresas tiene beneficios sociales al crear oportunidades laborales y reducir el desempleo.
 
 Ha habido muchas historias de éxito de empresas emergentes que recibieron garantías de préstamos de la SBA, como FedEx y Apple Computer. Sin embargo, también ha habido historias de pequeñas empresas y/o nuevas empresas que han incumplido con sus préstamos garantizados por la SBA.
 
-**Tarjeta de Datos:**
+> Tarjeta de Datos
 
 Contiene 899164 instancias y 27 variables.
 
@@ -28,7 +28,7 @@ Conjunto de datos original: "Should This Loan be Approved or Denied?”: A Large
 
 Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
 
-> ### Estructura del Proyecto
+### Estructura del Proyecto
 
     ├── data
         ├── clean
