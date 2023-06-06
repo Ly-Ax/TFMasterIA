@@ -1,6 +1,6 @@
-<img align="right" src="images/viu_cabecera.webp" width="230px">
+<img align="right" src="images/viu_cabecera.webp" width="200px">
 
-# Máster en Inteligencia Artificial <br>
+# Máster en Inteligencia Artificial <br><br>
 
 ## TFM: Comparación de Algoritmos de DL frente a Algoritmos de ML Clásicos <br> Caso: Aprobación de Préstamos de la U.S. Small Business Administration (SBA)
 
