@@ -31,7 +31,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
     ├── data
         ├── clean
         ├── map
-            ├── data_dictionary.csv -> Diccionario de Datos
+            ├── data_dictionary.csv -> Diccionario de datos
             ├── data_naics.csv      -> Descripción de dígitos NAICS
         ├── raw
             ├── sba_national.csv    -> Dataset original [DVC - GCP]
