@@ -1,0 +1,28 @@
+Variable,Descripción
+LoanNr_ChkDgt,Identificador - Clave principal
+Name,Nombre del prestatario
+City,Ciudad del prestataria
+State,Estado del prestatario
+Zip,Código postal del prestatario
+Bank,Nombre del banco
+BankState,Estado del banco
+NAICS,Código del sistema de clasificación de la industria de América del Norte
+ApprovalDate,Fecha de emisión del compromiso de la SBA
+ApprovalFY,Año fiscal del compromiso
+Term,Plazo del préstamo en meses
+NoEmp,Número de empleados de la empresa
+NewExist,1 = Negocio existente; 2 = Nuevo negocio
+CreateJob,Número de trabajos creados
+RetainedJob,Número de trabajos retenidos
+FranchiseCode,Código de franquicia: (00000 o 00001) = Sin franquicia
+UrbanRural,1 = Urbano; 2 = rural; 0 = indefinido
+RevLineCr,Línea de crédito renovable: Y = Sí; N = No
+LowDoc,Programa de préstamos: Y = Sí; N = No
+ChgOffDate,La fecha en que un préstamo se declara en mora
+DisbursementDate,Fecha de desembolso
+DisbursementGross,Monto Bruto desembolsado
+BalanceGross,Saldo Bruto pendiente
+MIS_Status,Estado del préstamo cancelado = CHGOFF; Pagado en su totalidad = PIF
+ChgOffPrinGr,Importe cancelado
+GrAppv,Importe bruto del préstamo aprobado por el banco
+SBA_Appv,Monto garantizado del préstamo aprobado por la SBA
