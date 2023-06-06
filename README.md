@@ -22,9 +22,7 @@ Contiene 899164 instancias y 27 variables.
 
 [Diccionario de Datos](data/map/data_dictionary.csv)
 
-[Descripción de los dos primeros dígitos del NAICS](data/map/data_naics.csv)
-
-Conjunto de datos original: "Should This Loan be Approved or Denied?”: A Large Dataset with Class Assignment Guidelines", por: Min Li, Amy Mickel & Stanley Taylor.
+Conjunto de datos original: "Should This Loan be Approved or Denied?”: A Large Dataset with Class Assignment Guidelines". <br> Por: Min Li, Amy Mickel & Stanley Taylor.
 
 Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
 
@@ -34,17 +32,17 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         ├── clean
         ├── map
             ├── data_dictionary.csv -> Diccionario de Datos
-            ├── data_naics.csv -> Descripción de dígitos NAICS
+            ├── data_naics.csv      -> Descripción de dígitos NAICS
         ├── raw
-            ├── sba_national.csv -> Dataset original [DVC - GCP]
+            ├── sba_national.csv    -> Dataset original [DVC - GCP]
     ├── docs
-        ├── sba_guidelines_en.pdf -> Articulo original (Inglés)
-        ├── sba_guidelines_es.pdf -> Articulo traducido (Español)
+        ├── sba_guidelines_en.pdf   -> Articulo original (Inglés)
+        ├── sba_guidelines_es.pdf   -> Articulo traducido (Español)
     ├── images
-        ├── viu_cabecera.webp -> Logotipo de la VIU para cabeceras
+        ├── viu_cabecera.webp       -> Logo de la VIU para cabeceras
     ├── models
     ├── notebooks
-        ├── data_exploration.ipynb -> Análisis de Datos Exploratorio
+        ├── data_exploration.ipynb  -> Análisis de Datos Exploratorio
     ├── src
         ├── classifier
         ├── load
