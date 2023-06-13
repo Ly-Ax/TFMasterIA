@@ -1,4 +1,4 @@
-# Comprensión de Datos
+# Comprensión de los Datos
 
 Extraido del artículo: https://doi.org/10.1080/10691898.2018.1434342
 
