@@ -46,3 +46,5 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
     ├── .gitignore
     ├── LICENSE
     ├── README.md
+
+<!-- # . /opt/anaconda3/bin/activate && conda activate /Users/zorromac/.conda/envs/Master_IA -->

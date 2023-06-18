@@ -1,9 +1,6 @@
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Environments
-venv/
-
 # Mac Files
 .DS_Store
 
