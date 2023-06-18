@@ -1,4 +1,4 @@
-# Comprensión de Datos
+# Comprensión de los Datos
 
 Extraido del artículo: https://doi.org/10.1080/10691898.2018.1434342
 
@@ -14,7 +14,7 @@ Ha habido muchas historias de éxito de empresas emergentes que recibieron garan
 |--------|---------|-----------|
 |LoanNr_ChkDgt|Text|Identificador - Clave principal|
 |Name|Text|Nombre del prestatario|
-|City|Text|Ciudad del prestataria|
+|City|Text|Ciudad del prestatario|
 |State|Text|Estado del prestatario|
 |Zip|Text|Código postal del prestatario|
 |Bank|Text|Nombre del banco|

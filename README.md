@@ -2,7 +2,7 @@
 
 # Máster en Inteligencia Artificial <br><br>
 
-## TFM: Comparación de Algoritmos de DL frente a Algoritmos de ML Clásicos <br> Caso: Aprobación de Préstamos de la U.S. Small Business Administration (SBA)
+## TFM: Comparación de Algoritmos de DL frente a Algoritmos de ML Clásicos <br> Caso: Aprobación de Préstamos de la U.S. Small Business Administration
 
 [**Alex Castro Gumiel**](https://www.linkedin.com/in/alex-castro-gumiel/)
 
@@ -20,6 +20,10 @@ Ha habido muchas historias de éxito de empresas emergentes que recibieron garan
 
 Contiene 899164 instancias y 27 variables.
 
+[Comprensión de los Datos](docs/data_understanding.md)
+
+[Análisis de las Variables](html/sba_national_eda.html)
+
 Conjunto de datos original: "Should This Loan be Approved or Denied?”: A Large Dataset with Class Assignment Guidelines". <br> Por: Min Li, Amy Mickel & Stanley Taylor.
 
 Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
@@ -33,6 +37,8 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
     ├── /docs
         ├── data_understanding.md   -> Comprensión de los datos
         ├── dataset_guidelines.pdf  -> Pautas del conjunto de datos
+    ├── /html
+        ├── sba_national_eda.html   -> EDA generado por ProfileReport
     ├── /images
         ├── viu_cabecera.webp       -> Logo de la VIU para cabeceras
     ├── /models
@@ -43,7 +49,6 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         ├── /load
         ├── /train
         ├── /transform
-
     ├── .gitignore
     ├── LICENSE
     ├── README.md
