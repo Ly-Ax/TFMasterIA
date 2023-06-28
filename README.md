@@ -41,10 +41,22 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         ├── sba_national_eda.html   -> EDA generado por ProfileReport
     ├── /images
         ├── viu_cabecera.webp       -> Logo de la VIU para cabeceras
+    ├── /models
     ├── /notebooks
         ├── data_exploration.ipynb  -> Análisis Exploratorio de Datos
+    ├── /src
+        ├── /classifier
+        ├── /load
+        ├── /train
+        ├── /transform
     ├── .gitignore
     ├── LICENSE
     ├── README.md
+    ├── requirements.txt
 
+<!-- ```
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+``` -->
 <!-- # . /opt/anaconda3/bin/activate && conda activate /Users/zorromac/.conda/envs/Master_IA -->
