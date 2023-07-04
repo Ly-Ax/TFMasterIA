@@ -31,9 +31,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
 ### Estructura del Proyecto
 
     ├── /data
-        ├── /clean
-        ├── /raw
-            ├── sba_national.csv    -> Dataset original [DVC - GCP]
+        ├── sba_national.csv        -> Dataset original completo
     ├── /docs
         ├── data_understanding.md   -> Comprensión de los datos
         ├── dataset_guidelines.pdf  -> Pautas del conjunto de datos
@@ -44,15 +42,9 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
     ├── /models
     ├── /notebooks
         ├── data_exploration.ipynb  -> Análisis Exploratorio de Datos
-    ├── /src
-        ├── /classifier
-        ├── /load
-        ├── /train
-        ├── /transform
     ├── .gitignore
     ├── LICENSE
     ├── README.md
-    ├── requirements.txt
 
 <!-- ```
 $ python3 -m venv venv
