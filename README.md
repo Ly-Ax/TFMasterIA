@@ -32,6 +32,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
 
     ├── /data
         ├── sba_national.csv        -> Dataset original completo
+        ├── sba_clean.csv           -> Dataset original limpio
     ├── /docs
         ├── data_understanding.md   -> Comprensión de los datos
         ├── dataset_guidelines.pdf  -> Pautas del conjunto de datos
