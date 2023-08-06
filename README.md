@@ -33,6 +33,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
     ├── /data
         ├── sba_national.csv        -> Dataset original completo
         ├── sba_clean.csv           -> Dataset limpio y transformado
+        ├── sba_balanced.csv        -> Dataset aplicando SMOTE
     ├── /docs
         ├── data_understanding.md   -> Comprensión de los datos
         ├── dataset_guidelines.pdf  -> Pautas del conjunto de datos
@@ -44,6 +45,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
     ├── /notebooks
         ├── data_exploration.ipynb  -> Análisis Exploratorio de Datos
         ├── preprocessing.ipynb     -> Preprocesamiento de Datos
+    ├── /results
     ├── /src
         ├── /classifier
         ├── /load

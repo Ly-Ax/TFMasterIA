@@ -3,3 +3,4 @@ ydata-profiling
 matplotlib
 seaborn
 scikit-learn
+imblearn
