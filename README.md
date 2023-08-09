@@ -30,31 +30,32 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
 
 ### Estructura del Proyecto
 
-    ├── /data
-        ├── sba_national.csv        -> Dataset original completo
-        ├── sba_clean.csv           -> Dataset limpio y transformado
-        ├── sba_balanced.csv        -> Dataset aplicando SMOTE
-    ├── /docs
-        ├── data_understanding.md   -> Comprensión de los datos
-        ├── dataset_guidelines.pdf  -> Pautas del conjunto de datos
-    ├── /html
-        ├── sba_national_eda.html   -> EDA generado por ProfileReport
-    ├── /images
-        ├── viu_cabecera.webp       -> Logo de la VIU para cabeceras
-    ├── /models
-    ├── /notebooks
-        ├── data_exploration.ipynb  -> Análisis Exploratorio de Datos
-        ├── preprocessing.ipynb     -> Preprocesamiento de Datos
-    ├── /results
-    ├── /src
-        ├── /classifier
-        ├── /load
-        ├── /train
-        ├── /transform
-    ├── .gitignore
-    ├── LICENSE
-    ├── README.md
-    ├── requirements.txt
+    ├── data/
+        ├── sba_national.csv                -> Dataset original completo
+        ├── sba_clean.csv                   -> Dataset limpio y transformado
+        ├── sba_subsam.csv                  -> Dataset balanceado SubSampling
+        ├── sba_balanced.csv                -> Dataset balanceado con SMOTE
+    ├── docs/
+        ├── data_understanding.md           -> Comprensión de los datos
+        ├── dataset_guidelines.pdf          -> Pautas del conjunto de datos
+    ├── html/
+        ├── sba_national_eda.html           -> EDA generado por ProfileReport
+    ├── images/
+        ├── viu_cabecera.webp               -> Logo de la VIU para cabeceras
+    ├── models/
+    ├── notebooks/
+        ├── data_exploration.ipynb          -> Análisis Exploratorio de Datos
+        ├── preprocessing.ipynb             -> Preprocesamiento de Datos
+    ├── results/
+    ├── src/
+        ├── transform/
+        ├── data_main.py                    -> 
+    ├── tests/
+    ├── .gitignore                          -> Archivos y carpetas ignorados
+    ├── config.yaml                         -> Valores de configuracion
+    ├── LICENSE                             -> Licencia de codigo abierto
+    ├── README.md                           -> Informacion sobre el proyecto
+    ├── requirements.txt                    -> Versiones de librerias necesarias
 
 <!-- ```
 $ python3 -m venv venv
