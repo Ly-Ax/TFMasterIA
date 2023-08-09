@@ -1,2 +1,2 @@
 data:
-  data_path: "/data/sba_national.csv"
+  data_path: '/data/sba_national.csv'

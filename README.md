@@ -54,6 +54,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
     ├── .gitignore                          -> Archivos y carpetas ignorados
     ├── config.yaml                         -> Valores de configuracion
     ├── LICENSE                             -> Licencia de codigo abierto
+    ├── Makefile                            -> Comandos para actualizaciones
     ├── README.md                           -> Informacion sobre el proyecto
     ├── requirements.txt                    -> Versiones de librerias necesarias
 
