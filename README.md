@@ -31,25 +31,32 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
 ### Estructura del Proyecto
 
     ├── data/
-        ├── sba_national.csv                -> Dataset original completo
-        ├── sba_clean.csv                   -> Dataset limpio y transformado
-        ├── sba_subsam.csv                  -> Dataset balanceado SubSampling
-        ├── sba_balanced.csv                -> Dataset balanceado con SMOTE
+        └── raw/
+            └── sba_national.csv            -> Dataset original completo
+            └── sba_train.csv               -> 
+            └── sba_val.csv                 -> 
+            └── sba_test.csv                -> 
+        └── clean/
+            └── sba_clean.csv               -> Dataset limpio y transformado
+            └── sba_clean_train.csv         -> 
+            └── sba_train_subsam.csv        -> 
+            └── sba_train_smote.csv         -> 
     ├── docs/
-        ├── data_understanding.md           -> Comprensión de los datos
-        ├── dataset_guidelines.pdf          -> Pautas del conjunto de datos
+        └── data_understanding.md           -> Comprensión de los datos
+        └── dataset_guidelines.pdf          -> Pautas del conjunto de datos
     ├── html/
-        ├── sba_national_eda.html           -> EDA generado por ProfileReport
+        └── sba_national_eda.html           -> EDA generado por ProfileReport
     ├── images/
-        ├── viu_cabecera.webp               -> Logo de la VIU para cabeceras
+        └── viu_cabecera.webp               -> Logo de la VIU para cabeceras
     ├── models/
     ├── notebooks/
-        ├── data_exploration.ipynb          -> Análisis Exploratorio de Datos
-        ├── preprocessing.ipynb             -> Preprocesamiento de Datos
+        └── data_exploration.ipynb          -> Análisis Exploratorio de Datos
+        └── preprocessing.ipynb             -> Preprocesamiento de Datos
+        └── data_pipeline.ipynb             -> 
     ├── results/
     ├── src/
-        ├── transform/
-        ├── data_main.py                    -> 
+        └── transform/
+        └── data_main.py                    -> 
     ├── tests/
     ├── .gitignore                          -> Archivos y carpetas ignorados
     ├── config.yaml                         -> Valores de configuracion

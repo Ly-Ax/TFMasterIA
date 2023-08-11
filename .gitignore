@@ -6,3 +6,4 @@ venv/
 
 # Large Dataset
 sba_national.csv
+sba_train.csv
