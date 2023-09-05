@@ -40,7 +40,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── sba_clean.csv                   -> Dataset limpio y transformado
             └── clean_train.csv                 -> Dataset limpio para training
             └── train_subsam.csv                -> Dataset aplicando SubSampling
-            └── train_smote.csv                 -> Datasets aplicando SMOTE
+            └── train_smote.csv                 -> Dataset aplicando SMOTE
     ├── docs/
         └── data_understanding.md               -> Comprensión de los datos
         └── dataset_guidelines.pdf              -> Pautas del conjunto de datos
@@ -58,11 +58,13 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── data_pipeline.ipynb                 -> Pipeline del Preprocesamiento
     ├── src/
         └── transform/
-            └── datasets_load.py                -> 
-            └── feature_transform.py            -> 
-            └── missing_values.py               -> 
-            └── encode_features.py              -> 
-            └── resampling_train.py             -> 
+            └── __init__.py                     -> Convertir directorio en paquete
+            └── dataset_load.py                 -> Carga de datasets especificados
+            └── feature_transform.py            -> Transformacion de caracteristicas
+            └── missing_values.py               -> Imputacion de valores faltantes
+            └── encode_features.py              -> Codificacion de caracteristicas
+            └── resampling_train.py             -> Remuestreo de datos para train
+            └── data_pipelines.py               -> 
         └── transform_main.py                   -> 
     ├── tests/
         └── unit/

@@ -1,9 +1,12 @@
-# Environments
+# environments
 venv/
 
-# Mac Files
+# mac files
 .DS_Store
 
-# Large Dataset
+# large dataset
 sba_national.csv
 sba_train.csv
+
+# compiled
+__pycache__/
