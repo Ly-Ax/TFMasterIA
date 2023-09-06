@@ -1,2 +1,18 @@
 data:
-  data_path: '/data/sba_national.csv'
+  data_raw: '/data/raw/sba_national.csv'
+  data_train: '/data/raw/sba_train.csv'
+  data_val: '/data/raw/sba_val.csv'
+  data_test: '/data/raw/sba_test.csv'
+  data_clean: '/data/clean/sba_clean.csv'
+  clean_train: '/data/clean/clean_train.csv'
+  train_subsam: '/data/clean/train_subsam.csv'
+  train_smote: '/data/clean/train_smote.csv'
+
+models:
+  preprocessing: '/models/preprocessing.joblib'
+
+vars:
+  train_split: 0.7
+  test_split: 0.5
+  rand_holdout: 44
+  rand_sample: 44

@@ -31,32 +31,50 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
 ### Estructura del Proyecto
 
     ├── data/
-        ├── sba_national.csv                -> Dataset original completo
-        ├── sba_clean.csv                   -> Dataset limpio y transformado
-        ├── sba_subsam.csv                  -> Dataset balanceado SubSampling
-        ├── sba_balanced.csv                -> Dataset balanceado con SMOTE
+        └── raw/
+            └── sba_national.csv                -> Dataset original completo
+            └── sba_train.csv                   -> Dataset original para training
+            └── sba_val.csv                     -> Dataset original para validation
+            └── sba_test.csv                    -> Dataset original para testing
+        └── clean/
+            └── sba_clean.csv                   -> Dataset limpio y transformado
+            └── clean_train.csv                 -> Dataset limpio para training
+            └── train_subsam.csv                -> Dataset aplicando SubSampling
+            └── train_smote.csv                 -> Dataset aplicando SMOTE
     ├── docs/
-        ├── data_understanding.md           -> Comprensión de los datos
-        ├── dataset_guidelines.pdf          -> Pautas del conjunto de datos
+        └── data_understanding.md               -> Comprensión de los datos
+        └── dataset_guidelines.pdf              -> Pautas del conjunto de datos
     ├── html/
-        ├── sba_national_eda.html           -> EDA generado por ProfileReport
+        └── sba_national_eda.html               -> EDA generado por ProfileReport
     ├── images/
-        ├── viu_cabecera.webp               -> Logo de la VIU para cabeceras
+        └── viu_cabecera.webp                   -> Logo de la VIU para cabeceras
+    ├── logs/
+        └── transform/
     ├── models/
+        └── preprocessing.joblib                -> Pipeline del preprocesamiento
     ├── notebooks/
-        ├── data_exploration.ipynb          -> Análisis Exploratorio de Datos
-        ├── preprocessing.ipynb             -> Preprocesamiento de Datos
-    ├── results/
+        └── data_exploration.ipynb              -> Análisis Exploratorio de Datos
+        └── preprocessing.ipynb                 -> Preprocesamiento de Datos
+        └── data_pipeline.ipynb                 -> Pipeline del Preprocesamiento
     ├── src/
-        ├── transform/
-        ├── data_main.py                    -> 
+        └── transform/
+            └── __init__.py                     -> Convertir directorio en paquete
+            └── dataset_load.py                 -> Carga de datasets especificados
+            └── feature_transform.py            -> Transformacion de caracteristicas
+            └── missing_values.py               -> Imputacion de valores faltantes
+            └── encode_features.py              -> Codificacion de caracteristicas
+            └── resampling_train.py             -> Remuestreo de datos para train
+            └── data_pipelines.py               -> Pipelines de preprocesamiento
+        └── transform_main.py                   -> Transformacion de los datasets
     ├── tests/
-    ├── .gitignore                          -> Archivos y carpetas ignorados
-    ├── config.yaml                         -> Valores de configuracion
-    ├── LICENSE                             -> Licencia de codigo abierto
-    ├── Makefile                            -> Comandos para actualizaciones
-    ├── README.md                           -> Informacion sobre el proyecto
-    ├── requirements.txt                    -> Versiones de librerias necesarias
+        └── unit/
+        └── integration/
+    ├── .gitignore                              -> Archivos y carpetas ignorados
+    ├── config.yaml                             -> Valores de configuracion
+    ├── LICENSE                                 -> Licencia de codigo abierto
+    ├── Makefile                                -> Comandos para actualizaciones
+    ├── README.md                               -> Informacion sobre el proyecto
+    ├── requirements.txt                        -> Versiones de librerias necesarias
 
 <!-- ```
 $ python3 -m venv venv
