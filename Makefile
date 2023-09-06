@@ -7,6 +7,6 @@ install:
 	@echo 'Install requirements...'
 	pip install -r requirements.txt
 
-run_data:
+transform:
 	@echo 'Execute transform data...'
 	$(PY) $(DIR)/transform_main.py

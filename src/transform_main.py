@@ -1,81 +1,140 @@
-"""Example module"""
+"""Dataset transformation"""
 import pandas as pd
 import os
 import yaml
-from transform import dataset_load
+import joblib
+from datetime import datetime
+from transform import data_pipelines
+from sklearn.model_selection import train_test_split
 
 
-class DataLoad:
-    """Example class"""
+class TransformData:
+    """Class to apply the transformations"""
 
-    def __init__(self, config):
-        """Example function"""
+    def __init__(self, config="config.yaml"):
+        """Initialize variables"""
         self.path = os.getcwd()
 
         with open(config, "r") as yaml_file:
             self.config = yaml.safe_load(yaml_file)
 
-    def get_df(self):
-        """Example function"""
-        df = pd.read_csv(self.path + self.config["data"]["data_raw"], low_memory=False)
-        return df
-    
     def HoldOutMethod(self):
-        # df_train, df_temp = train_test_split(df, train_size=0.7, random_state=random_seed)
-        # df_val, df_test = train_test_split(df_temp, test_size=0.5, random_state=random_seed)
+        """Split data with Hold-Out method"""
+        df = pd.read_csv(self.path + self.config["data"]["data_raw"], low_memory=False)
 
-        # df_train.to_csv(data_train, index=False)
-        # df_val.to_csv(data_val, index=False)
-        # df_test.to_csv(data_test, index=False)
+        df_train, df_temp = train_test_split(
+            df,
+            train_size=self.config["vars"]["train_split"],
+            random_state=self.config["vars"]["rand_holdout"],
+        )
 
-        # print(f"Train: {df_train.shape}")
-        # print(f"Val:   {df_val.shape}")
-        # print(f"Test:  {df_test.shape}")
-        pass
+        df_val, df_test = train_test_split(
+            df_temp,
+            test_size=self.config["vars"]["test_split"],
+            random_state=self.config["vars"]["rand_holdout"],
+        )
+
+        df_train.to_csv(self.path + self.config["data"]["data_train"], index=False)
+        df_val.to_csv(self.path + self.config["data"]["data_val"], index=False)
+        df_test.to_csv(self.path + self.config["data"]["data_test"], index=False)
+
+        print(f"Train: {df_train.shape}")
+        print(f"Val:   {df_val.shape}")
+        print(f"Test:  {df_test.shape}")
+
+    def Preprocessing(self, data_path):
+        """Preprocessing main pipeline"""
+        data_pipe = data_pipelines.DataPipelines()
+        df = data_pipe.PreprocessingPipeline(data_path)
+        return df
 
     def SavePipeline(self):
-        # joblib.dump(preprocessing_fit, prepro_pipe)
+        """Save preprocessing main pipeline"""
+        data_pipe = data_pipelines.DataPipelines()
+        prepro_fit = data_pipe.PreprocessingPipelineFit(self.config["data"]["data_raw"])
 
-        # prepro_pipeline = joblib.load(prepro_pipe)
+        joblib.dump(prepro_fit, self.path + self.config["models"]["preprocessing"])
 
-        # try:
-        #     prepro_pipeline
+        prepro_pipe = joblib.load(self.path + self.config["models"]["preprocessing"])
 
-        #     dt_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        #     print(f"{dt_now}: Pipeline is loaded...")
+        try:
+            prepro_pipe
 
-        # except Exception as e:
-        #     print("Error:", str(e))
-        pass
+            dt_now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            print(f"{dt_now}: Pipeline is saved...")
 
-    def TestPipeline(self):
-        # sba_raw = pd.read_csv(data_raw, low_memory=False)
-        # sba_clean = prepro_pipeline.transform(sba_raw)
+        except Exception as err:
+            print("Error:", str(err))
 
-        # sba_clean.to_csv(data_clean, index=False)
-        # print(sba_clean.info())
-        # sba_clean.sample(3)
+    def PreproPipeline(self, data_path=None):
+        """Persistent preprocessing main pipeline"""
+        data_path = (
+            self.config["data"]["data_train"] if data_path is None else data_path
+        )
 
-        # sba_train = pd.read_csv(data_train, low_memory=False)
-        # sba_clean_train = prepro_pipeline.transform(sba_train)
+        df = pd.read_csv(self.path + data_path, low_memory=False)
+        prepro_pipe = joblib.load(self.path + self.config["models"]["preprocessing"])
 
-        # sba_clean_train.to_csv(clean_train, index=False)
-        # print(sba_clean_train.info())
-        # sba_clean_train.sample(3)
+        df_ = prepro_pipe.transform(df)
+        return df_
 
-        # df_under.to_csv(train_subsam, index=False)
-        # print(df_under.shape)
-        # print(df_under["Default"].value_counts())
-        # df_under.sample(3)
+    def GenerateCleanData(self):
+        """Generate: sba_national.csv to sba_clean.csv"""
+        prepro_pipe = joblib.load(self.path + self.config["models"]["preprocessing"])
 
-        # df_smote.to_csv(train_smote, index=False)
-        # print(df_smote.shape)
-        # print(df_smote["Default"].value_counts())
-        # df_smote.sample(3)
-        pass
+        sba_raw = pd.read_csv(
+            self.path + self.config["data"]["data_raw"], low_memory=False
+        )
+        sba_clean = prepro_pipe.transform(sba_raw)
+        sba_clean.to_csv(self.path + self.config["data"]["data_clean"], index=False)
+        print(f"Data Clean: {sba_clean.shape}")
+
+        """Generate: sba_train.csv to clean_train.csv"""
+        sba_train = pd.read_csv(
+            self.path + self.config["data"]["data_train"], low_memory=False
+        )
+        sba_clean_train = prepro_pipe.transform(sba_train)
+        sba_clean_train.to_csv(
+            self.path + self.config["data"]["clean_train"], index=False
+        )
+        print(f"Clean Train: {sba_clean_train.shape}")
+
+    def GenerateResampling(self):
+        """SubSampling: sba_train.csv to train_subsam.csv"""
+        data_pipe = data_pipelines.DataPipelines()
+
+        df_under = data_pipe.UnderSamplingPipeline(
+            self.config["data"]["data_train"], self.config["vars"]["rand_sample"]
+        )
+        df_under.to_csv(self.path + self.config["data"]["train_subsam"], index=False)
+        print(df_under.shape)
+        print(df_under["Default"].value_counts())
+
+        """Generate SMOTE: sba_train.csv to train_smote.csv"""
+        df_smote = data_pipe.SmoteSamplingPipeline(
+            self.config["data"]["data_train"], self.config["vars"]["rand_sample"]
+        )
+        df_smote.to_csv(self.path + self.config["data"]["train_smote"], index=False)
+        print(df_smote.shape)
+        print(df_smote["Default"].value_counts())
 
 
 if __name__ == "__main__":
-    cnf_data = DataLoad("config.yaml")
-    df = cnf_data.get_df()
-    print(df.sample(3))
+    try:
+        data = TransformData()
+
+        # data.HoldOutMethod()
+        # data.SavePipeline()
+        # data.GenerateCleanData()
+        # data.GenerateResampling()
+
+        # df = data.Preprocessing("/data/raw/sba_national.csv")
+        # print(df.shape)
+        # print(df.sample(3))
+
+        df = data.PreproPipeline()
+        print(df.shape)
+        print(df.sample(3))
+
+    except Exception as err:
+        print("Error: ", str(err))

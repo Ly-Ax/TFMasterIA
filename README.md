@@ -64,8 +64,8 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── missing_values.py               -> Imputacion de valores faltantes
             └── encode_features.py              -> Codificacion de caracteristicas
             └── resampling_train.py             -> Remuestreo de datos para train
-            └── data_pipelines.py               -> 
-        └── transform_main.py                   -> 
+            └── data_pipelines.py               -> Pipelines de preprocesamiento
+        └── transform_main.py                   -> Transformacion de los datasets
     ├── tests/
         └── unit/
         └── integration/

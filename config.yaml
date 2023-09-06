@@ -8,5 +8,11 @@ data:
   train_subsam: '/data/clean/train_subsam.csv'
   train_smote: '/data/clean/train_smote.csv'
 
-pipeline:
+models:
   preprocessing: '/models/preprocessing.joblib'
+
+vars:
+  train_split: 0.7
+  test_split: 0.5
+  rand_holdout: 44
+  rand_sample: 44

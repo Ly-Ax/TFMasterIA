@@ -1,16 +1,22 @@
-import dataset_load as dt_ld
-import feature_transform as ft_tr
-import missing_values as ms_vl
-import encode_features as en_ft
-import resampling_train as rs_tr
-
+"""Main module from data pipelines"""
+import sys
+from pathlib import Path
 from sklearn.pipeline import Pipeline
+
+sys.path.append(str(Path(__file__).parents[1]))
+
+from transform import dataset_load as dt_ld
+from transform import feature_transform as ft_tr
+from transform import missing_values as ms_vl
+from transform import encode_features as en_ft
+from transform import resampling_train as rs_tr
 
 
 class DataPipelines:
-    def __init__(self):
-        self.random_seed = 44
+    """Pipelines to transform datasets"""
 
+    def __init__(self):
+        """Initialize variables"""
         self.drop_cols = [
             "LoanNr_ChkDgt",
             "Name",
@@ -122,10 +128,12 @@ class DataPipelines:
         self.target = ["Default"]
 
     def __DataRetrieval(self, data_path):
+        """Load the specified dataset"""
         dt_load = dt_ld.DataLoad()
         self.df = dt_load.data_load(data_path)
 
     def __FeatureTransform(self):
+        """Pipeline to transform features"""
         feature_transform = Pipeline(
             [
                 ("drop_columns", ft_tr.DropColumns(self.drop_cols)),
@@ -143,6 +151,7 @@ class DataPipelines:
         return feature_transform
 
     def __MissingValues(self):
+        """Pipeline to impute missing values"""
         missing_values = Pipeline(
             [
                 ("drop_nans", ms_vl.DropNaNs(self.drop_nans)),
@@ -154,6 +163,7 @@ class DataPipelines:
         return missing_values
 
     def __EncodeFeatures(self):
+        """Pipeline to encode categorical features"""
         encode_features = Pipeline(
             [
                 ("label_encoder", en_ft.LabelTransformer(self.cat_nom_cols)),
@@ -165,6 +175,7 @@ class DataPipelines:
         return encode_features
 
     def PreprocessingPipeline(self, data_path):
+        """Pipeline to preprocessing dataset"""
         self.__DataRetrieval(data_path)
 
         preprocessing = Pipeline(
@@ -178,7 +189,22 @@ class DataPipelines:
         self.preprocessing_fit = preprocessing.fit(self.df)
         return self.preprocessing_fit.transform(self.df)
 
-    def UnderSamplingPipeline(self, data_path):
+    def PreprocessingPipelineFit(self, data_path):
+        """Pipeline to preprocessing dataset"""
+        self.__DataRetrieval(data_path)
+
+        preprocessing = Pipeline(
+            [
+                ("feature_transform", self.__FeatureTransform()),
+                ("missing_values", self.__MissingValues()),
+                ("encode_features", self.__EncodeFeatures()),
+            ]
+        )
+
+        return preprocessing.fit(self.df)
+
+    def UnderSamplingPipeline(self, data_path, random_sample):
+        """Pipeline to undersampling dataset"""
         self.__DataRetrieval(data_path)
 
         under_sampling = Pipeline(
@@ -186,14 +212,15 @@ class DataPipelines:
                 ("feature_transform", self.__FeatureTransform()),
                 ("missing_values", self.__MissingValues()),
                 ("encode_features", self.__EncodeFeatures()),
-                ("under_sampler", rs_tr.SubSampling(self.target[0], self.random_seed)),
+                ("under_sampler", rs_tr.SubSampling(self.target[0], random_sample)),
             ]
         )
 
         self.under_sampling_fit = under_sampling.fit(self.df)
         return self.under_sampling_fit.transform(self.df)
 
-    def SmoteSamplingPipeline(self, data_path):
+    def SmoteSamplingPipeline(self, data_path, random_sample):
+        """Pipeline to oversampling dataset with SMOTE"""
         self.__DataRetrieval(data_path)
 
         smote_sampling = Pipeline(
@@ -203,7 +230,7 @@ class DataPipelines:
                 ("encode_features", self.__EncodeFeatures()),
                 (
                     "smote_sampler",
-                    rs_tr.SmoteSampling(self.target[0], self.random_seed),
+                    rs_tr.SmoteSampling(self.target[0], random_sample),
                 ),
             ]
         )
@@ -216,8 +243,6 @@ if __name__ == "__main__":
     try:
         data_pipe = DataPipelines()
         df = data_pipe.PreprocessingPipeline("/data/raw/sba_national.csv")
-        # df = data_pipe.UnderSamplingPipeline("/data/raw/sba_train.csv")
-        # df = data_pipe.SmoteSamplingPipeline("/data/raw/sba_train.csv")
 
         print(df.shape)
         print(df.sample(3))
