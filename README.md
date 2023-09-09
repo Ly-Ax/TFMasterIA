@@ -48,8 +48,6 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── sba_national_eda.html               -> EDA generado por ProfileReport
     ├── images/
         └── viu_cabecera.webp                   -> Logo de la VIU para cabeceras
-    ├── logs/
-        └── transform/
     ├── models/
         └── preprocessing.joblib                -> Pipeline del preprocesamiento
     ├── notebooks/
@@ -68,9 +66,6 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── resampling_train.py             -> Remuestreo de datos para train
             └── data_pipelines.py               -> Pipelines de preprocesamiento
         └── transform_main.py                   -> Transformacion de los datasets
-    ├── tests/
-        └── unit/
-        └── integration/
     ├── .gitignore                              -> Archivos y carpetas ignorados
     ├── config.yaml                             -> Valores de configuracion
     ├── LICENSE                                 -> Licencia de codigo abierto
