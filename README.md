@@ -37,8 +37,10 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── sba_val.csv                     -> Dataset original para validation
             └── sba_test.csv                    -> Dataset original para testing
         └── clean/
-            └── sba_clean.csv                   -> Dataset limpio y transformado
+            └── data_clean.csv                  -> Dataset limpio y transformado
             └── clean_train.csv                 -> Dataset limpio para training
+            └── clean_val.csv                   -> Dataset limpio para validation
+            └── clean_test.csv                  -> Dataset limpio para testing
             └── train_subsam.csv                -> Dataset aplicando SubSampling
             └── train_smote.csv                 -> Dataset aplicando SMOTE
     ├── docs/
@@ -50,12 +52,13 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── viu_cabecera.webp                   -> Logo de la VIU para cabeceras
     ├── models/
         └── preprocessing.joblib                -> Pipeline del preprocesamiento
+        └── logreg_model.joblib                 -> Modelo de Regresion Logistica
     ├── notebooks/
         └── data_exploration.ipynb              -> Análisis Exploratorio de Datos
         └── preprocessing.ipynb                 -> Preprocesamiento de Datos
         └── data_pipeline.ipynb                 -> Pipeline del Preprocesamiento
         └── automl_pycaret.ipynb                -> Linea base aplicando PyCaret
-        └── logistic_regression.ipynb           -> 
+        └── logistic_regression.ipynb           -> Modelo de Regresion Logistica
     ├── src/
         └── transform/
             └── __init__.py                     -> Convertir directorio en paquete
@@ -65,6 +68,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── encode_features.py              -> Codificacion de caracteristicas
             └── resampling_train.py             -> Remuestreo de datos para train
             └── data_pipelines.py               -> Pipelines de preprocesamiento
+        └── classifier/
         └── transform_main.py                   -> Transformacion de los datasets
     ├── .gitignore                              -> Archivos y carpetas ignorados
     ├── config.yaml                             -> Valores de configuracion

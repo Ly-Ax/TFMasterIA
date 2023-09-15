@@ -69,7 +69,7 @@ class TransformData:
     def PreproPipeline(self, data_path=None):
         """Persistent preprocessing main pipeline"""
         data_path = (
-            self.config["data"]["data_train"] if data_path is None else data_path
+            self.config["data"]["data_test"] if data_path is None else data_path
         )
 
         df = pd.read_csv(self.path + data_path, low_memory=False)
@@ -98,6 +98,26 @@ class TransformData:
             self.path + self.config["data"]["clean_train"], index=False
         )
         print(f"Clean Train: {sba_clean_train.shape}")
+
+        """Generate: sba_val.csv to clean_val.csv"""
+        sba_val = pd.read_csv(
+            self.path + self.config["data"]["data_val"], low_memory=False
+        )
+        sba_clean_val = prepro_pipe.transform(sba_val)
+        sba_clean_val.to_csv(
+            self.path + self.config["data"]["clean_val"], index=False
+        )
+        print(f"Clean Val: {sba_clean_val.shape}")
+
+        """Generate: sba_test.csv to clean_test.csv"""
+        sba_test = pd.read_csv(
+            self.path + self.config["data"]["data_test"], low_memory=False
+        )
+        sba_clean_test = prepro_pipe.transform(sba_test)
+        sba_clean_test.to_csv(
+            self.path + self.config["data"]["clean_test"], index=False
+        )
+        print(f"Clean Test: {sba_clean_test.shape}")
 
     def GenerateResampling(self):
         """SubSampling: sba_train.csv to train_subsam.csv"""

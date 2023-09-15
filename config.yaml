@@ -3,8 +3,10 @@ data:
   data_train: '/data/raw/sba_train.csv'
   data_val: '/data/raw/sba_val.csv'
   data_test: '/data/raw/sba_test.csv'
-  data_clean: '/data/clean/sba_clean.csv'
+  data_clean: '/data/clean/data_clean.csv'
   clean_train: '/data/clean/clean_train.csv'
+  clean_val: '/data/clean/clean_val.csv'
+  clean_test: '/data/clean/clean_test.csv'
   train_subsam: '/data/clean/train_subsam.csv'
   train_smote: '/data/clean/train_smote.csv'
 
