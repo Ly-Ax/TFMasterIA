@@ -184,9 +184,12 @@ class ConvertTarget(BaseEstimator, TransformerMixin):
         X = X.copy()
         var = self.variable
 
-        X[var] = np.where(X[var] == "CHGOFF", 1, X[var])
-        X[var] = np.where(X[var] == "P I F", 0, X[var])
-        X[var] = X[var].astype("Int64")
+        if var in X.columns:
+            X[var] = np.where(X[var]=="CHGOFF", 1, X[var])
+            X[var] = np.where(X[var]=="P I F", 0, X[var])
+            X[var] = X[var].astype("Int64")
+
+            X.rename(columns={var:"Default"}, inplace=True)
         return X
 
 

@@ -68,7 +68,6 @@ class DataPipelines:
             "DisbursementGross": "GrDisburs",
             "GrAppv": "GrApprov",
             "SBA_Appv": "ApprovSBA",
-            "MIS_Status": "Default",
         }
 
         self.drop_nans = ["Default"]
@@ -154,7 +153,6 @@ class DataPipelines:
         """Pipeline to impute missing values"""
         missing_values = Pipeline(
             [
-                ("drop_nans", ms_vl.DropNaNs(self.drop_nans)),
                 ("mode_imputer", ms_vl.ModeImputer(self.mode_cols)),
                 ("class_imputer", ms_vl.ClassImputer(self.class_cols, self.pred_cols)),
                 ("drop_duplicates", ms_vl.DropDuplicates()),
@@ -169,6 +167,7 @@ class DataPipelines:
                 ("label_encoder", en_ft.LabelTransformer(self.cat_nom_cols)),
                 ("one-hot_encoder", en_ft.OneHotTransformer(self.cat_num_cols)),
                 ("ordinal_encoder", en_ft.OrdinalTransformer(self.cat_ord_cols)),
+                ("drop_nans", en_ft.DropNaNs(self.drop_nans)),
                 ("sort_columns", en_ft.SortColumns(self.sort_cols)),
             ]
         )

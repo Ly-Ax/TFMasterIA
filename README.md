@@ -69,7 +69,12 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── resampling_train.py             -> Remuestreo de datos para train
             └── data_pipelines.py               -> Pipelines de preprocesamiento
         └── classifier/
+            └── __init__.py                     -> Convertir directorio en paquete
+            └── custom_classifier.py            -> Transformaciones personalizadas
+            └── logreg_pipeline.py              -> Pipeline de Regresion Logistica
+            └── classifier_models.py            -> 
         └── transform_main.py                   -> Transformacion de los datasets
+        └── logreg_model.py                     -> 
     ├── .gitignore                              -> Archivos y carpetas ignorados
     ├── config.yaml                             -> Valores de configuracion
     ├── LICENSE                                 -> Licencia de codigo abierto

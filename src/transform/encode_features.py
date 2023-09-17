@@ -79,6 +79,27 @@ class OrdinalTransformer(BaseEstimator, TransformerMixin):
         return X
 
 
+class DropNaNs(BaseEstimator, TransformerMixin):
+    """Drop null values"""
+
+    def __init__(self, variables):
+        """Initialize variables"""
+        self.variables = variables
+
+    def fit(self, X, y=None):
+        """Fit custom transformer"""
+        return self
+
+    def transform(self, X, y=None):
+        """Apply transformation"""
+        X = X.copy()
+        for var in self.variables:
+            if var in X.columns:
+                X.dropna(subset=[var], inplace=True)
+                X[var] = X[var].astype(int)
+        return X
+    
+    
 class SortColumns(BaseEstimator, TransformerMixin):
     """Sort columns of final dataset"""
 
@@ -93,5 +114,6 @@ class SortColumns(BaseEstimator, TransformerMixin):
     def transform(self, X, y=None):
         """Apply transformation"""
         X = X.copy()
-        X = X[self.variables]
+        sort_cols = [col for col in self.variables if col in X.columns]
+        X = X[sort_cols]
         return X

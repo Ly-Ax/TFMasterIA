@@ -4,26 +4,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.ensemble import RandomForestClassifier
 
 
-class DropNaNs(BaseEstimator, TransformerMixin):
-    """Drop null values"""
-
-    def __init__(self, variables):
-        """Initialize variables"""
-        self.variables = variables
-
-    def fit(self, X, y=None):
-        """Fit custom transformer"""
-        return self
-
-    def transform(self, X, y=None):
-        """Apply transformation"""
-        X = X.copy()
-        for var in self.variables:
-            X.dropna(subset=[var], inplace=True)
-            X[var] = X[var].astype(int)
-        return X
-
-
 class ModeImputer(BaseEstimator, TransformerMixin):
     """Univariate imputer with mode"""
 
