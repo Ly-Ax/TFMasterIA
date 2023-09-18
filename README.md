@@ -71,7 +71,6 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── classifier/
             └── __init__.py                     -> Convertir directorio en paquete
             └── custom_classifier.py            -> Transformaciones personalizadas
-            └── logreg_pipeline.py              -> Pipeline de Regresion Logistica
             └── classifier_models.py            -> 
         └── transform_main.py                   -> Transformacion de los datasets
         └── logreg_model.py                     -> 

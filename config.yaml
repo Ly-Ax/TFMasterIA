@@ -19,6 +19,7 @@ vars:
 
 models:
   preprocessing: '/models/preprocessing.joblib'
+  logreg_model: '/models/logreg_model.joblib'
 
 logreg:
   penalty: 'l2'

@@ -42,7 +42,7 @@ class TransformData:
         print(f"Val:   {df_val.shape}")
         print(f"Test:  {df_test.shape}")
 
-    def Preprocessing(self, data_path):
+    def PreproPipeline(self, data_path):
         """Preprocessing main pipeline"""
         data_pipe = data_pipelines.DataPipelines()
         df = data_pipe.PreprocessingPipeline(data_path)
@@ -66,13 +66,13 @@ class TransformData:
         except Exception as err:
             print("Error:", str(err))
 
-    def PreproPipeline(self, data_path=None):
+    def Preprocessing(self, df=None):
         """Persistent preprocessing main pipeline"""
-        data_path = (
-            self.config["data"]["data_test"] if data_path is None else data_path
-        )
+        if df is None:
+            data_path = self.config["data"]["data_test"]
+            df = pd.read_csv(self.path + data_path, low_memory=False)
+            # df = df.drop(columns=["MIS_Status"])
 
-        df = pd.read_csv(self.path + data_path, low_memory=False)
         prepro_pipe = joblib.load(self.path + self.config["models"]["preprocessing"])
 
         df_ = prepro_pipe.transform(df)
@@ -104,9 +104,7 @@ class TransformData:
             self.path + self.config["data"]["data_val"], low_memory=False
         )
         sba_clean_val = prepro_pipe.transform(sba_val)
-        sba_clean_val.to_csv(
-            self.path + self.config["data"]["clean_val"], index=False
-        )
+        sba_clean_val.to_csv(self.path + self.config["data"]["clean_val"], index=False)
         print(f"Clean Val: {sba_clean_val.shape}")
 
         """Generate: sba_test.csv to clean_test.csv"""
@@ -148,11 +146,11 @@ if __name__ == "__main__":
         # data.GenerateCleanData()
         # data.GenerateResampling()
 
-        # df = data.Preprocessing("/data/raw/sba_national.csv")
+        # df = data.PreproPipeline("/data/raw/sba_national.csv")
         # print(df.shape)
         # print(df.sample(3))
 
-        df = data.PreproPipeline()
+        df = data.Preprocessing()
         print(df.shape)
         print(df.sample(3))
 

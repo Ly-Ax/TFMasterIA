@@ -41,23 +41,24 @@ class ClassImputer(BaseEstimator, TransformerMixin):
         """Apply transformation"""
         X = X.copy()
         for var in self.variables:
-            self.df_subset[0] = var
-            df_ = X[self.df_subset]
+            if X[var].isnull().sum() > 0:
+                self.df_subset[0] = var
+                df_ = X[self.df_subset]
 
-            df_train = df_.dropna(subset=[var])
-            df_test = df_[df_[var].isnull()]
+                df_train = df_.dropna(subset=[var])
+                df_test = df_[df_[var].isnull()]
 
-            X_train = df_train.drop(columns=[var])
-            y_train = df_train[var]
-            X_test = df_test.drop(columns=[var])
+                X_train = df_train.drop(columns=[var])
+                y_train = df_train[var]
+                X_test = df_test.drop(columns=[var])
 
-            rf_classifier = RandomForestClassifier()
-            rf_classifier.fit(X_train, y_train)
+                rf_classifier = RandomForestClassifier()
+                rf_classifier.fit(X_train, y_train)
 
-            y_test = rf_classifier.predict(X_test)
-            X.loc[X[var].isnull(), var] = y_test
+                y_test = rf_classifier.predict(X_test)
+                X.loc[X[var].isnull(), var] = y_test
 
-            X[var] = X[var].astype(int)
+                X[var] = X[var].astype(int)
         return X
 
 

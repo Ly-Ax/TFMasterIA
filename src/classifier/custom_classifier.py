@@ -40,10 +40,10 @@ class LogisticRegressionModel(BaseEstimator, TransformerMixin):
             self.config = yaml.safe_load(yaml_file)
 
         self.log_reg = LogisticRegression(
-            penalty = self.config["logreg"]["penalty"],
-            C = self.config["logreg"]["c"],
-            max_iter = self.config["logreg"]["max_iter"],
-            random_state = self.config["vars"]["rand_logreg"],
+            penalty=self.config["logreg"]["penalty"],
+            C=self.config["logreg"]["c"],
+            max_iter=self.config["logreg"]["max_iter"],
+            random_state=self.config["vars"]["rand_logreg"],
         )
         self.threshold = self.config["logreg"]["threshold"]
 
