@@ -6,6 +6,9 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.base import BaseEstimator, TransformerMixin
 
 
+"""==================== LOGISTIC REGRESSION ===================="""
+
+
 class ZScoreTransformer(BaseEstimator, TransformerMixin):
     """Normalize numerical features"""
 

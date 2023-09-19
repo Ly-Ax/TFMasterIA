@@ -62,16 +62,12 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
     ├── src/
         └── transform/
             └── __init__.py                     -> Convertir directorio en paquete
-            └── dataset_load.py                 -> Carga de datasets especificados
-            └── feature_transform.py            -> Transformacion de caracteristicas
-            └── missing_values.py               -> Imputacion de valores faltantes
-            └── encode_features.py              -> Codificacion de caracteristicas
-            └── resampling_train.py             -> Remuestreo de datos para train
+            └── data_transform.py               -> Preprocesamiento de variables
             └── data_pipelines.py               -> Pipelines de preprocesamiento
         └── classifier/
             └── __init__.py                     -> Convertir directorio en paquete
             └── custom_classifier.py            -> Transformaciones personalizadas
-            └── classifier_models.py            -> 
+            └── classifier_models.py            -> Modelos para Clasificacion
         └── transform_main.py                   -> Transformacion de los datasets
         └── logreg_model.py                     -> 
     ├── .gitignore                              -> Archivos y carpetas ignorados
