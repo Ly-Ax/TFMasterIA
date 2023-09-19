@@ -3,16 +3,26 @@ data:
   data_train: '/data/raw/sba_train.csv'
   data_val: '/data/raw/sba_val.csv'
   data_test: '/data/raw/sba_test.csv'
-  data_clean: '/data/clean/sba_clean.csv'
+  data_clean: '/data/clean/data_clean.csv'
   clean_train: '/data/clean/clean_train.csv'
+  clean_val: '/data/clean/clean_val.csv'
+  clean_test: '/data/clean/clean_test.csv'
   train_subsam: '/data/clean/train_subsam.csv'
   train_smote: '/data/clean/train_smote.csv'
-
-models:
-  preprocessing: '/models/preprocessing.joblib'
 
 vars:
   train_split: 0.7
   test_split: 0.5
   rand_holdout: 44
   rand_sample: 44
+  rand_logreg: 44
+
+models:
+  preprocessing: '/models/preprocessing.joblib'
+  logreg_model: '/models/logreg_model.joblib'
+
+logreg:
+  penalty: 'l2'
+  c: 0.1
+  max_iter: 1000
+  threshold: 0.4
