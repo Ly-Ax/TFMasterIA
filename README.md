@@ -2,7 +2,7 @@
 
 # Máster en Inteligencia Artificial <br><br>
 
-## TFM: Comparación de Algoritmos de DL frente a Algoritmos de ML Clásicos <br> Caso: Aprobación de Préstamos de la U.S. Small Business Administration
+## TFM: Comparación de Algoritmos de DL frente a Algoritmos de ML Clásicos <br> Caso: Predicción del incumplimiento de un préstamo bancario de la U.S. SBA
 
 [**Alex Castro Gumiel**](https://www.linkedin.com/in/alex-castro-gumiel/)
 
