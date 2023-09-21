@@ -10,3 +10,7 @@ sba_train.csv
 
 # compiled
 __pycache__/
+mlruns
+
+# notebooks
+automl_pycaret.ipynb

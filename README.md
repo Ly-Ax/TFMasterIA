@@ -57,8 +57,8 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── data_exploration.ipynb              -> Análisis Exploratorio de Datos
         └── preprocessing.ipynb                 -> Preprocesamiento de Datos
         └── data_pipeline.ipynb                 -> Pipeline del Preprocesamiento
-        └── automl_pycaret.ipynb                -> Linea base aplicando PyCaret
         └── logistic_regression.ipynb           -> Modelo de Regresion Logistica
+        └── model_registry.ipynb                -> 
     ├── src/
         └── transform/
             └── __init__.py                     -> Convertir directorio en paquete
@@ -68,7 +68,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── __init__.py                     -> Convertir directorio en paquete
             └── custom_classifier.py            -> Transformaciones personalizadas
             └── classifier_models.py            -> Modelos para Clasificacion
-        └── transform_main.py                   -> Transformacion de los datasets
+        └── transform_main.py                   -> Transformacion de datasets
         └── logreg_model.py                     -> 
     ├── .gitignore                              -> Archivos y carpetas ignorados
     ├── config.yaml                             -> Valores de configuracion
