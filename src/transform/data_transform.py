@@ -364,12 +364,13 @@ class OneHotTransformer(BaseEstimator, TransformerMixin):
     def transform(self, X, y=None):
         """Apply transformation"""
         X = X.copy()
-        X = pd.get_dummies(X, columns=[self.variable])
-
-        X.rename(
-            columns={"UrbanRural_1": "Urban", "UrbanRural_2": "Rural"}, inplace=True
-        )
-        X.drop(columns="UrbanRural_0", axis=1, inplace=True)
+        # X = pd.get_dummies(X, columns=[self.variable])
+        # X.rename(columns={"UrbanRural_1":"Urban",
+        #                   "UrbanRural_2":"Rural"}, inplace=True)
+        # X.drop(columns="UrbanRural_0", axis=1, inplace=True)
+        X["Urban"] = np.where(X["UrbanRural"]==1, 1, 0)
+        X["Rural"] = np.where(X["UrbanRural"]==2, 1, 0)
+        X.drop(columns="UrbanRural", axis=1, inplace=True)
 
         X["Urban"] = X["Urban"].astype(int)
         X["Rural"] = X["Rural"].astype(int)
