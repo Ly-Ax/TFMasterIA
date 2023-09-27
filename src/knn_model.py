@@ -11,8 +11,8 @@ test_data = cls_mod.GenerateTestData(100)
 X_test, y_test = test_data.SampleData()
 
 if pred_mode == "batch":
-    lr_model = cls_mod.LogRegModel()
-    y_pred = lr_model.LogRegPredict(X_test)
+    knn_model = cls_mod.KnnModel()
+    y_pred = knn_model.KnnPredict(X_test)
 
     print("Exactitud:    %.4f" % (accuracy_score(y_test, y_pred)))
     print("Precisión:    %.4f" % (precision_score(y_test, y_pred, average="macro")))
@@ -20,7 +20,7 @@ if pred_mode == "batch":
     print("F1-score:     %.4f" % (f1_score(y_test, y_pred, average="macro")))
 
 if pred_mode == "single":
-    X = X_test[y_test == 0].sample(1)
+    X = X_test[y_test == 1].sample(1)
     # dic_test = X.to_dict(orient="records")
     # print(dic_test)    
     # def_true = [{"State": 34, "BankState": 37, "DifState": 0, "Sector": 19, "AppYear": 43,
@@ -33,6 +33,6 @@ if pred_mode == "single":
     #               "GrApprov": 290000, "ApprovSBA": 145000, "SecuredSBA": 50,}]
     # X = pd.DataFrame(def_true)
 
-    lr_model = cls_mod.LogRegModel()
-    y_pred = lr_model.LogRegPredict(X)
+    knn_model = cls_mod.KnnModel()
+    y_pred = knn_model.KnnPredict(X)
     print(y_pred)

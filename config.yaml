@@ -20,9 +20,16 @@ vars:
 models:
   preprocessing: '/models/preprocessing.joblib'
   logreg_model: '/models/logreg_model.joblib'
+  knn_model: '/models/knn_model.joblib'
 
 logreg:
   penalty: 'l2'
   c: 1
   max_iter: 1000
   threshold: 0.4
+
+knn:
+  n_neighbors: 10
+  weights: 'uniform'
+  metric: 'manhattan'
+

@@ -14,3 +14,6 @@ mlruns/
 
 # notebooks
 automl_pycaret.ipynb
+
+# large models
+knn_model.joblib

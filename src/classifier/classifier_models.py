@@ -78,15 +78,10 @@ class LogRegModel:
         df_train = pd.read_csv(
             self.path + self.config["data"]["data_train"], low_memory=False
         )
-        df_val = pd.read_csv(
-            self.path + self.config["data"]["data_val"], low_memory=False
-        )
 
         trn_data = trn_main.TransformData()
         df_train = trn_data.Preprocessing(df_train)
-        df_val = trn_data.Preprocessing(df_val)
 
-        df_train = pd.concat([df_train, df_val], axis=0)
         X = df_train.drop(columns=self.target)
         y = df_train[self.target[0]]
 
@@ -96,7 +91,7 @@ class LogRegModel:
                 ("custom_model", cs_cl.LogisticRegressionModel()),
             ]
         )
-        logreg_pipeline.fit_transform(X, y)
+        logreg_pipeline.fit(X, y)
 
         if SaveModel == True:
             joblib.dump(
@@ -117,14 +112,79 @@ class LogRegModel:
         return y_pred
 
 
+class KnnModel:
+    """K Nearest Neighbors model"""
+
+    def __init__(self):
+        """Initialize variables"""
+        self.path = os.getcwd()
+        with open("config.yaml", "r") as yaml_file:
+            self.config = yaml.safe_load(yaml_file)
+
+        self.num_cols = [
+            "Term",
+            "NoEmp",
+            "SecuredSBA",
+            "GrDisburs",
+            "GrApprov",
+            "ApprovSBA",
+        ]
+        self.target = "Default"
+
+    def TrainKnn(self, SaveModel=False):
+        """Train K Nearest Neighbors model"""
+        df_train = pd.read_csv(
+            self.path + self.config["data"]["data_train"], low_memory=False
+        )
+        df_val = pd.read_csv(
+            self.path + self.config["data"]["data_val"], low_memory=False
+        )
+
+        trn_data = trn_main.TransformData()
+        df_train = trn_data.Preprocessing(df_train)
+        df_val = trn_data.Preprocessing(df_val)
+
+        df_train_val = pd.concat([df_train, df_val], axis=0)
+        X = df_train_val.drop(columns=[self.target])
+        y = df_train_val[self.target]
+
+        knn_pipeline = Pipeline(
+            [
+                ("scaler", cs_cl.MinMaxTransformer(self.num_cols)),
+                ("custom_model", cs_cl.KNeighborsModel()),
+            ]
+        )
+        knn_pipeline.fit(X, y)
+
+        if SaveModel == True:
+            joblib.dump(knn_pipeline, self.path + self.config["models"]["knn_model"])
+
+        return knn_pipeline
+
+    def KnnPredict(self, X, PreData=True):
+        """K Nearest Neighbors Predict"""
+        if PreData == True:
+            trn_data = trn_main.TransformData()
+            X = trn_data.Preprocessing(X)
+
+        knn_model = joblib.load(self.path + self.config["models"]["knn_model"])
+
+        y_pred = knn_model.predict(X)
+        return y_pred
+
+
 if __name__ == "__main__":
     try:
         test_data = GenerateTestData(100)
         X_test, y_test = test_data.SampleData()
 
-        lr_model = LogRegModel()
-        # log_reg = lr_model.TrainLogReg(SaveModel=True)
-        y_pred = lr_model.LogRegPredict(X_test)
+        # lr_model = LogRegModel()
+        # # log_reg = lr_model.TrainLogReg(SaveModel=True)
+        # y_pred = lr_model.LogRegPredict(X_test)
+
+        knn_model = KnnModel()
+        # knn = knn_model.TrainKnn(SaveModel=True)
+        y_pred = knn_model.KnnPredict(X_test)
 
         print("Exactitud:    %.4f" % (accuracy_score(y_test, y_pred)))
         print("Precisión:    %.4f" % (precision_score(y_test, y_pred, average="macro")))

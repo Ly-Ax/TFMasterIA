@@ -53,11 +53,13 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
     ├── models/
         └── preprocessing.joblib                -> Pipeline del preprocesamiento
         └── logreg_model.joblib                 -> Modelo de Regresion Logistica
+        └── knn_model.joblib                    -> Modelo de K Vecinos Cercanos
     ├── notebooks/
         └── data_exploration.ipynb              -> Análisis Exploratorio de Datos
         └── preprocessing.ipynb                 -> Preprocesamiento de Datos
         └── data_pipeline.ipynb                 -> Pipeline del Preprocesamiento
         └── logistic_regression.ipynb           -> Modelo de Regresion Logistica
+        └── k-nearest_neighbors.ipynb           -> Modelo de K Vecinos Cercanos
         └── model_registry.ipynb                -> 
     ├── src/
         └── transform/
@@ -70,6 +72,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── classifier_models.py            -> Modelos para Clasificacion
         └── transform_main.py                   -> Transformacion de datasets
         └── logreg_model.py                     -> 
+        └── knn_model.py                        -> 
     ├── .gitignore                              -> Archivos y carpetas ignorados
     ├── config.yaml                             -> Valores de configuracion
     ├── LICENSE                                 -> Licencia de codigo abierto
