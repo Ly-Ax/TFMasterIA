@@ -18,9 +18,9 @@ vars:
   rand_logreg: 44
 
 models:
-  preprocessing: '/models/preprocessing.joblib'
-  logreg_model: '/models/logreg_model.joblib'
-  knn_model: '/models/knn_model.joblib'
+  preprocessing: '/model/preprocessing.joblib'
+  logreg_model: '/model/logreg_model.joblib'
+  knn_model: '/model/knn_model.joblib'
 
 logreg:
   penalty: 'l2'

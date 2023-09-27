@@ -10,3 +10,11 @@ install:
 transform:
 	@echo 'Execute transform data...'
 	$(PY) $(DIR)/transform_main.py
+
+logreg:
+	@echo 'Logistic Regression...'
+	$(PY) $(DIR)/logreg_model.py
+
+knn:
+	@echo 'K Nearest Neighbors...'
+	$(PY) $(DIR)/knn_model.py
