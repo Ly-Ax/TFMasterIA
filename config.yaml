@@ -19,10 +19,10 @@ vars:
   rand_dectree: 44
 
 models:
-  preprocessing: '/model/preprocessing.joblib'
-  logreg_model: '/model/logreg_model.joblib'
-  knn_model: '/model/knn_model.joblib'
-  dectree_model: '/model/dectree_model.joblib'
+  preprocessing: '/models/preprocessing.joblib'
+  logreg_model: '/models/logreg_model.joblib'
+  knn_model: '/models/knn_model.joblib'
+  dectree_model: '/models/dectree_model.joblib'
 
 logreg:
   penalty: 'l2'
