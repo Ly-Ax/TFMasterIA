@@ -173,6 +173,53 @@ class KnnModel:
         return y_pred
 
 
+class DecTreeModel:
+    """Decision Tree Classifier"""
+
+    def __init__(self):
+        """Initialize variables"""
+        self.path = os.getcwd()
+        with open("config.yaml", "r") as yaml_file:
+            self.config = yaml.safe_load(yaml_file)
+
+        self.target = "Default"
+
+    def TrainDecTree(self):
+        """Train Decision Tree Classifier"""
+        df_train = pd.read_csv(
+            self.path + self.config["data"]["data_train"], low_memory=False
+        )
+        df_val = pd.read_csv(
+            self.path + self.config["data"]["data_val"], low_memory=False
+        )
+
+        trn_data = trn_main.TransformData()
+        df_train = trn_data.Preprocessing(df_train)
+        df_val = trn_data.Preprocessing(df_val)
+
+        df_train_val = pd.concat([df_train, df_val], axis=0)
+        X = df_train_val.drop(columns=[self.target])
+        y = df_train_val[self.target]
+
+        dectree_pipeline = Pipeline([("custom_model", cs_cl.DecisionTreeModel())])
+        dectree_pipeline.fit(X, y)
+
+        joblib.dump(
+            dectree_pipeline, self.path + self.config["models"]["dectree_model"]
+        )
+
+    def DecTreePredict(self, X, PreData=True):
+        """Decision Tree Predict"""
+        if PreData == True:
+            trn_data = trn_main.TransformData()
+            X = trn_data.Preprocessing(X)
+
+        dtc_model = joblib.load(self.path + self.config["models"]["dectree_model"])
+
+        y_pred = dtc_model.predict(X)
+        return y_pred
+
+
 if __name__ == "__main__":
     try:
         test_data = GenerateTestData(100)
@@ -182,9 +229,13 @@ if __name__ == "__main__":
         # # log_reg = lr_model.TrainLogReg(SaveModel=True)
         # y_pred = lr_model.LogRegPredict(X_test)
 
-        knn_model = KnnModel()
-        # knn = knn_model.TrainKnn(SaveModel=True)
-        y_pred = knn_model.KnnPredict(X_test)
+        # knn_model = KnnModel()
+        # # knn = knn_model.TrainKnn(SaveModel=True)
+        # y_pred = knn_model.KnnPredict(X_test)
+
+        dtc_model = DecTreeModel()
+        # dtc_model.TrainDecTree()
+        y_pred = dtc_model.DecTreePredict(X_test)
 
         print("Exactitud:    %.4f" % (accuracy_score(y_test, y_pred)))
         print("Precisión:    %.4f" % (precision_score(y_test, y_pred, average="macro")))

@@ -6,6 +6,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 
 
 """==================== TRANSFORMATIONS ===================="""
@@ -130,4 +131,45 @@ class KNeighborsModel(BaseEstimator, TransformerMixin):
         """Custom predictive k nearest neighbors model"""
         X_ = X[self.pred_cols].copy()
         y_pred = self.knn.predict(X_)
+        return y_pred
+
+
+"""==================== DECISION TREE CLASSIFIER ===================="""
+
+
+class DecisionTreeModel(BaseEstimator, TransformerMixin):
+    """Decision Tree Classifier Model"""
+
+    def __init__(self):
+        """Initialize variables"""
+        self.path = os.getcwd()
+        with open("config.yaml", "r") as yaml_file:
+            self.config = yaml.safe_load(yaml_file)
+
+        self.dectree = DecisionTreeClassifier(
+            criterion=self.config["dectree"]["criterion"],
+            max_depth=self.config["dectree"]["max_depth"],
+            random_state=self.config["vars"]["rand_dectree"],
+        )
+        self.pred_cols = [
+            "State",
+            "BankState",
+            "DifState",
+            "AppYear",
+            "Term",
+            "NoEmp",
+            "GrDisburs",
+            "ApprovSBA",
+            "SecuredSBA",
+        ]
+
+    def fit(self, X, y):
+        """Fit decision tree classifier"""
+        self.dectree.fit(X[self.pred_cols], y)
+        return self
+
+    def predict(self, X, y=None):
+        """Custom predictive decision tree classifier"""
+        X_ = X[self.pred_cols].copy()
+        y_pred = self.dectree.predict(X_)
         return y_pred
