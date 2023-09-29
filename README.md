@@ -54,12 +54,16 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── preprocessing.joblib                -> Pipeline del preprocesamiento
         └── logreg_model.joblib                 -> Modelo de Regresion Logistica
         └── knn_model.joblib                    -> Modelo de K Vecinos Cercanos
+        └── dectree_model.joblib                -> Modelo de Arboles de Decision
+        └── ranfor_model.joblib                 -> 
     ├── notebooks/
         └── data_exploration.ipynb              -> Análisis Exploratorio de Datos
         └── preprocessing.ipynb                 -> Preprocesamiento de Datos
         └── data_pipeline.ipynb                 -> Pipeline del Preprocesamiento
         └── logistic_regression.ipynb           -> Modelo de Regresion Logistica
         └── k-nearest_neighbors.ipynb           -> Modelo de K Vecinos Cercanos
+        └── decision_tree.ipynb                 -> Modelo de Arboles de Decision
+        └── random_forest.ipynb                 -> 
         └── model_registry.ipynb                -> 
     ├── src/
         └── transform/
@@ -73,6 +77,8 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── transform_main.py                   -> Transformacion de datasets
         └── logreg_model.py                     -> 
         └── knn_model.py                        -> 
+        └── dectree_model.py                    -> 
+        └── ranfor_model.py                     -> 
     ├── .gitignore                              -> Archivos y carpetas ignorados
     ├── config.yaml                             -> Valores de configuracion
     ├── LICENSE                                 -> Licencia de codigo abierto

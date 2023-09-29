@@ -16,11 +16,13 @@ vars:
   rand_holdout: 44
   rand_sample: 44
   rand_logreg: 44
+  rand_dectree: 44
 
 models:
   preprocessing: '/model/preprocessing.joblib'
   logreg_model: '/model/logreg_model.joblib'
   knn_model: '/model/knn_model.joblib'
+  dectree_model: '/model/dectree_model.joblib'
 
 logreg:
   penalty: 'l2'
@@ -33,3 +35,6 @@ knn:
   weights: 'uniform'
   metric: 'manhattan'
 
+dectree:
+  criterion: 'entropy' 
+  max_depth: 20

@@ -7,14 +7,18 @@ install:
 	@echo 'Install requirements...'
 	pip install -r requirements.txt
 
-transform:
+trn_data:
 	@echo 'Execute transform data...'
 	$(PY) $(DIR)/transform_main.py
 
-logreg:
+log_reg:
 	@echo 'Logistic Regression...'
 	$(PY) $(DIR)/logreg_model.py
 
-knn:
+k_nn:
 	@echo 'K Nearest Neighbors...'
 	$(PY) $(DIR)/knn_model.py
+
+dec_tree:
+	@echo 'Decision Tree Classifier...'
+	$(PY) $(DIR)/dectree_model.py
