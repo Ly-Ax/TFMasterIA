@@ -15,24 +15,24 @@ import transform_main as trn_main
 from classifier import custom_classifier as cs_cl
 
 
-class GenerateTestData:
+class GenerateTestTrain:
     """Generate test data"""
 
-    def __init__(self, num_sample=0):
+    def __init__(self):
         """Initialize variables"""
         self.path = os.getcwd()
         with open("config.yaml", "r") as yaml_file:
             self.config = yaml.safe_load(yaml_file)
 
-        self.sample = num_sample
+        self.target = "Default"
 
-    def SampleData(self):
+    def SampleData(self, NumSample=0):
         """Generate sample data"""
         df_test = pd.read_csv(
             self.path + self.config["data"]["data_test"], low_memory=False
         )
-        if self.sample > 0:
-            df_test = df_test.sample(self.sample)
+        if NumSample > 0:
+            df_test = df_test.sample(NumSample)
 
         df_test["MIS_Status"] = np.where(
             df_test["MIS_Status"] == "CHGOFF", 1, df_test["MIS_Status"]
@@ -53,6 +53,27 @@ class GenerateTestData:
 
         return X_test, y_test
 
+    def TrainData(self, ValData=False):
+        """Generate train data"""
+        trn_data = trn_main.TransformData()
+
+        df_train = pd.read_csv(
+            self.path + self.config["data"]["data_train"], low_memory=False
+        )
+        df_train = trn_data.Preprocessing(df_train)
+
+        if ValData == True:
+            df_val = pd.read_csv(
+                self.path + self.config["data"]["data_val"], low_memory=False
+            )
+            df_val = trn_data.Preprocessing(df_val)
+            df_train = pd.concat([df_train, df_val], axis=0)
+
+        X = df_train.drop(columns=[self.target])
+        y = df_train[self.target]
+
+        return X, y
+
 
 class LogRegModel:
     """Logistic Regression model"""
@@ -71,19 +92,11 @@ class LogRegModel:
             "GrApprov",
             "ApprovSBA",
         ]
-        self.target = ["Default"]
 
-    def TrainLogReg(self, SaveModel=False):
+    def TrainLogReg(self):
         """Train Logistic Regression model"""
-        df_train = pd.read_csv(
-            self.path + self.config["data"]["data_train"], low_memory=False
-        )
-
-        trn_data = trn_main.TransformData()
-        df_train = trn_data.Preprocessing(df_train)
-
-        X = df_train.drop(columns=self.target)
-        y = df_train[self.target[0]]
+        train_data = GenerateTestTrain()
+        X_train, y_train = train_data.TrainData()
 
         logreg_pipeline = Pipeline(
             [
@@ -91,14 +104,9 @@ class LogRegModel:
                 ("custom_model", cs_cl.LogisticRegressionModel()),
             ]
         )
-        logreg_pipeline.fit(X, y)
+        logreg_pipeline.fit(X_train, y_train)
 
-        if SaveModel == True:
-            joblib.dump(
-                logreg_pipeline, self.path + self.config["models"]["logreg_model"]
-            )
-
-        return logreg_pipeline
+        joblib.dump(logreg_pipeline, self.path + self.config["models"]["logreg_model"])
 
     def LogRegPredict(self, X, PreData=True):
         """Logistic Regression Predict"""
@@ -129,24 +137,11 @@ class KnnModel:
             "GrApprov",
             "ApprovSBA",
         ]
-        self.target = "Default"
 
-    def TrainKnn(self, SaveModel=False):
+    def TrainKnn(self):
         """Train K Nearest Neighbors model"""
-        df_train = pd.read_csv(
-            self.path + self.config["data"]["data_train"], low_memory=False
-        )
-        df_val = pd.read_csv(
-            self.path + self.config["data"]["data_val"], low_memory=False
-        )
-
-        trn_data = trn_main.TransformData()
-        df_train = trn_data.Preprocessing(df_train)
-        df_val = trn_data.Preprocessing(df_val)
-
-        df_train_val = pd.concat([df_train, df_val], axis=0)
-        X = df_train_val.drop(columns=[self.target])
-        y = df_train_val[self.target]
+        train_data = GenerateTestTrain()
+        X_train, y_train = train_data.TrainData(ValData=True)
 
         knn_pipeline = Pipeline(
             [
@@ -154,12 +149,9 @@ class KnnModel:
                 ("custom_model", cs_cl.KNeighborsModel()),
             ]
         )
-        knn_pipeline.fit(X, y)
+        knn_pipeline.fit(X_train, y_train)
 
-        if SaveModel == True:
-            joblib.dump(knn_pipeline, self.path + self.config["models"]["knn_model"])
-
-        return knn_pipeline
+        joblib.dump(knn_pipeline, self.path + self.config["models"]["knn_model"])
 
     def KnnPredict(self, X, PreData=True):
         """K Nearest Neighbors Predict"""
@@ -182,34 +174,20 @@ class DecTreeModel:
         with open("config.yaml", "r") as yaml_file:
             self.config = yaml.safe_load(yaml_file)
 
-        self.target = "Default"
-
     def TrainDecTree(self):
         """Train Decision Tree Classifier"""
-        df_train = pd.read_csv(
-            self.path + self.config["data"]["data_train"], low_memory=False
-        )
-        df_val = pd.read_csv(
-            self.path + self.config["data"]["data_val"], low_memory=False
-        )
-
-        trn_data = trn_main.TransformData()
-        df_train = trn_data.Preprocessing(df_train)
-        df_val = trn_data.Preprocessing(df_val)
-
-        df_train_val = pd.concat([df_train, df_val], axis=0)
-        X = df_train_val.drop(columns=[self.target])
-        y = df_train_val[self.target]
+        train_data = GenerateTestTrain()
+        X_train, y_train = train_data.TrainData(ValData=True)
 
         dectree_pipeline = Pipeline([("custom_model", cs_cl.DecisionTreeModel())])
-        dectree_pipeline.fit(X, y)
+        dectree_pipeline.fit(X_train, y_train)
 
         joblib.dump(
             dectree_pipeline, self.path + self.config["models"]["dectree_model"]
         )
 
     def DecTreePredict(self, X, PreData=True):
-        """Decision Tree Predict"""
+        """Decision Tree Classifier Predict"""
         if PreData == True:
             trn_data = trn_main.TransformData()
             X = trn_data.Preprocessing(X)
@@ -220,22 +198,60 @@ class DecTreeModel:
         return y_pred
 
 
+class RanForModel:
+    """Random Forest Classifier"""
+
+    def __init__(self):
+        """Initialize variables"""
+        self.path = os.getcwd()
+        with open("config.yaml", "r") as yaml_file:
+            self.config = yaml.safe_load(yaml_file)
+
+    def TrainRanFor(self):
+        """Train Random Forest Classifier"""
+        train_data = GenerateTestTrain()
+        X_train, y_train = train_data.TrainData(ValData=True)
+
+        ranfor_pipeline = Pipeline([("custom_model", cs_cl.RandomForestModel())])
+        ranfor_pipeline.fit(X_train, y_train)
+
+        joblib.dump(ranfor_pipeline, self.path + self.config["models"]["ranfor_model"])
+
+    def RanForPredict(self, X, PreproData=True):
+        """Random Forest Classifier Predict"""
+        if PreproData == True:
+            trn_data = trn_main.TransformData()
+            X = trn_data.Preprocessing(X)
+
+        rfc_model = joblib.load(self.path + self.config["models"]["ranfor_model"])
+
+        y_pred = rfc_model.predict(X)
+        return y_pred
+
+
 if __name__ == "__main__":
     try:
-        test_data = GenerateTestData(100)
-        X_test, y_test = test_data.SampleData()
+        test_data = GenerateTestTrain()
+        X_test, y_test = test_data.SampleData(100)
+        # print(f"X: {X_test.shape} y: {y_test.shape}")
+        # X_train, y_train = test_data.TrainData(ValData=True)
+        # print(f"X: {X_train.shape} y: {y_train.shape}")
 
         # lr_model = LogRegModel()
-        # # log_reg = lr_model.TrainLogReg(SaveModel=True)
+        # # lr_model.TrainLogReg()
         # y_pred = lr_model.LogRegPredict(X_test)
 
         # knn_model = KnnModel()
-        # # knn = knn_model.TrainKnn(SaveModel=True)
+        # # knn_model.TrainKnn()
         # y_pred = knn_model.KnnPredict(X_test)
 
-        dtc_model = DecTreeModel()
-        # dtc_model.TrainDecTree()
-        y_pred = dtc_model.DecTreePredict(X_test)
+        # dtc_model = DecTreeModel()
+        # # dtc_model.TrainDecTree()
+        # y_pred = dtc_model.DecTreePredict(X_test)
+
+        rfc_model = RanForModel()
+        # rfc_model.TrainRanFor()
+        y_pred = rfc_model.RanForPredict(X_test)
 
         print("Exactitud:    %.4f" % (accuracy_score(y_test, y_pred)))
         print("Precisión:    %.4f" % (precision_score(y_test, y_pred, average="macro")))

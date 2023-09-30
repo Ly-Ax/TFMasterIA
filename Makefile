@@ -22,3 +22,7 @@ k_nn:
 dec_tree:
 	@echo 'Decision Tree Classifier...'
 	$(PY) $(DIR)/dectree_model.py
+
+ran_for:
+	@echo 'Random Forest Classifier...'
+	$(PY) $(DIR)/ranfor_model.py

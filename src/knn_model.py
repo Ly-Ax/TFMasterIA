@@ -7,8 +7,8 @@ sys.path.append(str(Path(__file__).parents[1]))
 from classifier import classifier_models as cls_mod
 
 pred_mode = "batch"
-test_data = cls_mod.GenerateTestData(100)
-X_test, y_test = test_data.SampleData()
+test_data = cls_mod.GenerateTestTrain()
+X_test, y_test = test_data.SampleData(100)
 
 if pred_mode == "batch":
     knn_model = cls_mod.KnnModel()

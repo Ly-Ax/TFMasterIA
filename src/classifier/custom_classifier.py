@@ -7,6 +7,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 
 """==================== TRANSFORMATIONS ===================="""
@@ -172,4 +173,45 @@ class DecisionTreeModel(BaseEstimator, TransformerMixin):
         """Custom predictive decision tree classifier"""
         X_ = X[self.pred_cols].copy()
         y_pred = self.dectree.predict(X_)
+        return y_pred
+
+
+"""==================== RANDOM FOREST CLASSIFIER ===================="""
+
+
+class RandomForestModel(BaseEstimator, TransformerMixin):
+    """Random Forest Classifier Model"""
+
+    def __init__(self):
+        """Initialize variables"""
+        self.path = os.getcwd()
+        with open("config.yaml", "r") as yaml_file:
+            self.config = yaml.safe_load(yaml_file)
+
+        self.ranfor = RandomForestClassifier(
+            criterion=self.config["ranfor"]["criterion"],
+            max_depth=self.config["ranfor"]["max_depth"],
+            random_state=self.config["vars"]["rand_ranfor"],
+        )
+        self.pred_cols = [
+            "State",
+            "BankState",
+            "Sector",
+            "AppYear",
+            "Term",
+            "GrDisburs",
+            "GrApprov",
+            "ApprovSBA",
+            "SecuredSBA",
+        ]
+
+    def fit(self, X, y):
+        """Fit random forest classifier"""
+        self.ranfor.fit(X[self.pred_cols], y)
+        return self
+
+    def predict(self, X, y=None):
+        """Custom predictive random forest classifier"""
+        X_ = X[self.pred_cols].copy()
+        y_pred = self.ranfor.predict(X_)
         return y_pred

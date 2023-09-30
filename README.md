@@ -55,7 +55,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── logreg_model.joblib                 -> Modelo de Regresion Logistica
         └── knn_model.joblib                    -> Modelo de K Vecinos Cercanos
         └── dectree_model.joblib                -> Modelo de Arboles de Decision
-        └── ranfor_model.joblib                 -> 
+        └── ranfor_model.joblib                 -> Modelo de Bosque Aleatorio
     ├── notebooks/
         └── data_exploration.ipynb              -> Análisis Exploratorio de Datos
         └── preprocessing.ipynb                 -> Preprocesamiento de Datos
@@ -63,7 +63,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── logistic_regression.ipynb           -> Modelo de Regresion Logistica
         └── k-nearest_neighbors.ipynb           -> Modelo de K Vecinos Cercanos
         └── decision_tree.ipynb                 -> Modelo de Arboles de Decision
-        └── random_forest.ipynb                 -> 
+        └── random_forest.ipynb                 -> Modelo de Bosque Aleatorio
         └── model_registry.ipynb                -> 
     ├── src/
         └── transform/
