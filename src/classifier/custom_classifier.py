@@ -8,6 +8,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
 
 
 """==================== TRANSFORMATIONS ===================="""
@@ -214,4 +215,33 @@ class RandomForestModel(BaseEstimator, TransformerMixin):
         """Custom predictive random forest classifier"""
         X_ = X[self.pred_cols].copy()
         y_pred = self.ranfor.predict(X_)
+        return y_pred
+
+
+"""==================== XGBOOST CLASSIFIER ===================="""
+
+
+class XGBoostModel(BaseEstimator, TransformerMixin):
+    """XGBoost Classifier Model"""
+
+    def __init__(self):
+        """Initialize variables"""
+        self.path = os.getcwd()
+        with open("config.yaml", "r") as yaml_file:
+            self.config = yaml.safe_load(yaml_file)
+
+        self.xgboost = XGBClassifier(
+            learning_rate=self.config["xgboost"]["learning_rate"],
+            max_depth=self.config["xgboost"]["max_depth"],
+            random_state=self.config["vars"]["rand_xgboost"],
+        )
+
+    def fit(self, X, y):
+        """Fit xgboost classifier"""
+        self.xgboost.fit(X, y)
+        return self
+
+    def predict(self, X, y=None):
+        """Custom predictive xgboost classifier"""
+        y_pred = self.xgboost.predict(X)
         return y_pred

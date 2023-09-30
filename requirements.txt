@@ -8,3 +8,4 @@ black
 interrogate
 shap
 mlflow
+xgboost

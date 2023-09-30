@@ -108,11 +108,10 @@ class LogRegModel:
 
         joblib.dump(logreg_pipeline, self.path + self.config["models"]["logreg_model"])
 
-    def LogRegPredict(self, X, PreData=True):
+    def LogRegPredict(self, X):
         """Logistic Regression Predict"""
-        if PreData == True:
-            trn_data = trn_main.TransformData()
-            X = trn_data.Preprocessing(X)
+        trn_data = trn_main.TransformData()
+        X = trn_data.Preprocessing(X)
 
         logreg_model = joblib.load(self.path + self.config["models"]["logreg_model"])
 
@@ -153,11 +152,10 @@ class KnnModel:
 
         joblib.dump(knn_pipeline, self.path + self.config["models"]["knn_model"])
 
-    def KnnPredict(self, X, PreData=True):
+    def KnnPredict(self, X):
         """K Nearest Neighbors Predict"""
-        if PreData == True:
-            trn_data = trn_main.TransformData()
-            X = trn_data.Preprocessing(X)
+        trn_data = trn_main.TransformData()
+        X = trn_data.Preprocessing(X)
 
         knn_model = joblib.load(self.path + self.config["models"]["knn_model"])
 
@@ -186,11 +184,10 @@ class DecTreeModel:
             dectree_pipeline, self.path + self.config["models"]["dectree_model"]
         )
 
-    def DecTreePredict(self, X, PreData=True):
+    def DecTreePredict(self, X):
         """Decision Tree Classifier Predict"""
-        if PreData == True:
-            trn_data = trn_main.TransformData()
-            X = trn_data.Preprocessing(X)
+        trn_data = trn_main.TransformData()
+        X = trn_data.Preprocessing(X)
 
         dtc_model = joblib.load(self.path + self.config["models"]["dectree_model"])
 
@@ -217,15 +214,46 @@ class RanForModel:
 
         joblib.dump(ranfor_pipeline, self.path + self.config["models"]["ranfor_model"])
 
-    def RanForPredict(self, X, PreproData=True):
+    def RanForPredict(self, X):
         """Random Forest Classifier Predict"""
-        if PreproData == True:
-            trn_data = trn_main.TransformData()
-            X = trn_data.Preprocessing(X)
+        trn_data = trn_main.TransformData()
+        X = trn_data.Preprocessing(X)
 
         rfc_model = joblib.load(self.path + self.config["models"]["ranfor_model"])
 
         y_pred = rfc_model.predict(X)
+        return y_pred
+
+
+class XGBoostModel:
+    """XGBoost Classifier"""
+
+    def __init__(self):
+        """Initialize variables"""
+        self.path = os.getcwd()
+        with open("config.yaml", "r") as yaml_file:
+            self.config = yaml.safe_load(yaml_file)
+
+    def TrainXGBoost(self):
+        """Train Random Forest Classifier"""
+        train_data = GenerateTestTrain()
+        X_train, y_train = train_data.TrainData(ValData=True)
+
+        xgboost_pipeline = Pipeline([("custom_model", cs_cl.XGBoostModel())])
+        xgboost_pipeline.fit(X_train, y_train)
+
+        joblib.dump(
+            xgboost_pipeline, self.path + self.config["models"]["xgboost_model"]
+        )
+
+    def XGBoostPredict(self, X):
+        """XGBoost Classifier Predict"""
+        trn_data = trn_main.TransformData()
+        X = trn_data.Preprocessing(X)
+
+        xgb_model = joblib.load(self.path + self.config["models"]["xgboost_model"])
+
+        y_pred = xgb_model.predict(X)
         return y_pred
 
 
@@ -249,9 +277,13 @@ if __name__ == "__main__":
         # # dtc_model.TrainDecTree()
         # y_pred = dtc_model.DecTreePredict(X_test)
 
-        rfc_model = RanForModel()
-        # rfc_model.TrainRanFor()
-        y_pred = rfc_model.RanForPredict(X_test)
+        # rfc_model = RanForModel()
+        # # rfc_model.TrainRanFor()
+        # y_pred = rfc_model.RanForPredict(X_test)
+
+        xgb_model = XGBoostModel()
+        # xgb_model.TrainXGBoost()
+        y_pred = xgb_model.XGBoostPredict(X_test)
 
         print("Exactitud:    %.4f" % (accuracy_score(y_test, y_pred)))
         print("Precisión:    %.4f" % (precision_score(y_test, y_pred, average="macro")))

@@ -26,3 +26,7 @@ dec_tree:
 ran_for:
 	@echo 'Random Forest Classifier...'
 	$(PY) $(DIR)/ranfor_model.py
+
+xgboost:
+	@echo 'XGBoost Classifier...'
+	$(PY) $(DIR)/xgboost_model.py

@@ -18,6 +18,7 @@ vars:
   rand_logreg: 44
   rand_dectree: 44
   rand_ranfor: 44
+  rand_xgboost: 44
 
 models:
   preprocessing: '/models/preprocessing.joblib'
@@ -25,6 +26,7 @@ models:
   knn_model: '/models/knn_model.joblib'
   dectree_model: '/models/dectree_model.joblib'
   ranfor_model: '/models/ranfor_model.joblib'
+  xgboost_model: '/models/xgboost_model.joblib'
 
 logreg:
   penalty: 'l2'
@@ -44,3 +46,7 @@ dectree:
 ranfor:
   criterion: 'entropy'
   max_depth: 20
+
+xgboost:
+  learning_rate: 0.2
+  max_depth: 10

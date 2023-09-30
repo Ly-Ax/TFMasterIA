@@ -56,6 +56,8 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── knn_model.joblib                    -> Modelo de K Vecinos Cercanos
         └── dectree_model.joblib                -> Modelo de Arboles de Decision
         └── ranfor_model.joblib                 -> Modelo de Bosque Aleatorio
+        └── svm_model.joblib                    -> 
+        └── xgboost_model.joblib                -> Modelo XGBoost Clasificador
     ├── notebooks/
         └── data_exploration.ipynb              -> Análisis Exploratorio de Datos
         └── preprocessing.ipynb                 -> Preprocesamiento de Datos
@@ -64,6 +66,8 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── k-nearest_neighbors.ipynb           -> Modelo de K Vecinos Cercanos
         └── decision_tree.ipynb                 -> Modelo de Arboles de Decision
         └── random_forest.ipynb                 -> Modelo de Bosque Aleatorio
+        └── svm_classifier.ipynb                -> 
+        └── xgb_classifier.ipynb                -> Modelo XGBoost Clasificador
         └── model_registry.ipynb                -> 
     ├── src/
         └── transform/
@@ -79,6 +83,8 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── knn_model.py                        -> 
         └── dectree_model.py                    -> 
         └── ranfor_model.py                     -> 
+        └── svm_model.py                        -> 
+        └── xgb_model.py                        -> 
     ├── .gitignore                              -> Archivos y carpetas ignorados
     ├── config.yaml                             -> Valores de configuracion
     ├── LICENSE                                 -> Licencia de codigo abierto
