@@ -70,6 +70,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── xgb_classifier.ipynb                -> Modelo XGBoost Clasificador
         └── clustering/
             └── dim_reduction.ipynb                 -> Reduccion de Dimensionalidad
+            └── clustering_models.ipynb             -> Modelos de Agrupamiento
         └── model_registry.ipynb                    -> 
     ├── src/
         └── transform/
@@ -80,8 +81,6 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── __init__.py                         -> Convertir directorio en paquete
             └── custom_classifier.py                -> Transformaciones personalizadas
             └── classifier_models.py                -> Modelos para Clasificacion
-        └── clustering/
-            └── __init__.py                         -> Convertir directorio en paquete
         └── transform_main.py                       -> Transformacion de datasets
         └── logreg_model.py                         -> 
         └── knn_model.py                            -> 
