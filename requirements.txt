@@ -9,3 +9,5 @@ interrogate
 shap
 mlflow
 xgboost
+tensorflow
+keras
