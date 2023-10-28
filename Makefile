@@ -3,6 +3,9 @@ PY = python3
 DIR = src
 
 # TASKS
+test_task:
+	@echo 'Hello, World!!!'
+
 install:
 	@echo 'Install requirements...'
 	pip install -r requirements.txt
