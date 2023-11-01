@@ -43,7 +43,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── clean_test.csv                      -> Dataset limpio para testing
             └── train_subsam.csv                    -> Dataset aplicando SubSampling
             └── train_smote.csv                     -> Dataset aplicando SMOTE
-            └── data_results.csv                    -> 
+            └── data_results.csv                    -> Muestreo y division de Datos
     ├── docs/
         └── data_understanding.md                   -> Comprensión de los datos
         └── dataset_guidelines.pdf                  -> Pautas del conjunto de datos
