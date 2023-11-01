@@ -1,35 +1,35 @@
 # VARIABLES
-PY = python3
+PY = python
 DIR = src
 
 # TASKS
-test_task:
+test:
 	@echo 'Hello, World!!!'
 
-install:
+inst:
 	@echo 'Install requirements...'
 	pip install -r requirements.txt
 
-trn_data:
+pre:
 	@echo 'Execute transform data...'
 	$(PY) $(DIR)/transform_main.py
 
-log_reg:
+lr:
 	@echo 'Logistic Regression...'
 	$(PY) $(DIR)/logreg_model.py
 
-k_nn:
+knn:
 	@echo 'K Nearest Neighbors...'
 	$(PY) $(DIR)/knn_model.py
 
-dec_tree:
+dtc:
 	@echo 'Decision Tree Classifier...'
 	$(PY) $(DIR)/dectree_model.py
 
-ran_for:
+rfc:
 	@echo 'Random Forest Classifier...'
 	$(PY) $(DIR)/ranfor_model.py
 
-xgboost:
+xgb:
 	@echo 'XGBoost Classifier...'
 	$(PY) $(DIR)/xgboost_model.py

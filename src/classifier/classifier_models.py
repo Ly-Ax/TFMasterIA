@@ -262,8 +262,6 @@ if __name__ == "__main__":
         test_data = GenerateTestTrain()
         X_test, y_test = test_data.SampleData(100)
         # print(f"X: {X_test.shape} y: {y_test.shape}")
-        # X_train, y_train = test_data.TrainData(ValData=True)
-        # print(f"X: {X_train.shape} y: {y_train.shape}")
 
         # lr_model = LogRegModel()
         # # lr_model.TrainLogReg()

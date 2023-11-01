@@ -233,6 +233,7 @@ class XGBoostModel(BaseEstimator, TransformerMixin):
         self.xgboost = XGBClassifier(
             learning_rate=self.config["xgboost"]["learning_rate"],
             max_depth=self.config["xgboost"]["max_depth"],
+            n_estimators=self.config["xgboost"]["n_estimators"],
             random_state=self.config["vars"]["rand_xgboost"],
         )
 

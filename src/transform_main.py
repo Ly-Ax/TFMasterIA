@@ -120,14 +120,14 @@ class TransformData:
 
 if __name__ == "__main__":
     try:
-        df = pd.read_csv(os.getcwd() + "/data/raw/sba_test.csv", low_memory=False)
-        # df = df.drop(columns=["MIS_Status"])
-
         data = TransformData()
         # data.HoldOutMethod()
         # data.SavePipeline()
         # data.GenerateCleanData()
         # data.GenerateResampling()
+        
+        df = pd.read_csv(os.getcwd() + "/data/raw/sba_test.csv", low_memory=False)
+        # df = df.drop(columns=["MIS_Status"])
         df = data.Preprocessing(df)
 
         print(df.shape)
