@@ -43,6 +43,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── clean_test.csv                      -> Dataset limpio para testing
             └── train_subsam.csv                    -> Dataset aplicando SubSampling
             └── train_smote.csv                     -> Dataset aplicando SMOTE
+            └── data_results.csv                    -> 
     ├── docs/
         └── data_understanding.md                   -> Comprensión de los datos
         └── dataset_guidelines.pdf                  -> Pautas del conjunto de datos
@@ -70,7 +71,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── xgb_classifier.ipynb                -> Modelo XGBoost Clasificador
             └── mlp_classifier.ipynb                -> Modelo Multi-layer Perceptron
             └── model_stacking.ipynb                -> Meta-Ensamble de Modelos
-            └── split_data_sampling.ipynb           -> 
+            └── split_data_sampling.ipynb           -> Muestreo y division de datos
         └── clustering/
             └── dim_reduction.ipynb                 -> Reduccion de Dimensionalidad
             └── clustering_models.ipynb             -> Modelos de Agrupamiento
