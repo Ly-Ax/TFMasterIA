@@ -69,9 +69,10 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── decision_tree.ipynb                 -> Modelo de Arboles de Decision
             └── random_forest.ipynb                 -> Modelo de Bosque Aleatorio
             └── xgb_classifier.ipynb                -> Modelo XGBoost Clasificador
-            └── mlp_classifier.ipynb                -> Modelo Multi-layer Perceptron
             └── model_stacking.ipynb                -> Meta-Ensamble de Modelos
             └── split_data_sampling.ipynb           -> Muestreo y division de datos
+            └── mlp_classifier.ipynb                -> Modelo Multi-layer Perceptron
+            └── mlp_ensemble_voting.ipynb           -> MLP Meta-Ensamble por Votacion
         └── clustering/
             └── dim_reduction.ipynb                 -> Reduccion de Dimensionalidad
             └── clustering_models.ipynb             -> Modelos de Agrupamiento
