@@ -76,8 +76,6 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── clustering/
             └── dim_reduction.ipynb                 -> Reduccion de Dimensionalidad
             └── clustering_models.ipynb             -> Modelos de Agrupamiento
-        └── mlops/
-            └── model_registry.ipynb                -> 
     ├── src/
         └── transform/
             └── __init__.py                         -> Convertir directorio en paquete
@@ -88,11 +86,11 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── custom_classifier.py                -> Transformaciones personalizadas
             └── classifier_models.py                -> Modelos para Clasificacion
         └── transform_main.py                       -> Transformacion de datasets
-        └── logreg_model.py                         -> 
-        └── knn_model.py                            -> 
-        └── dectree_model.py                        -> 
-        └── ranfor_model.py                         -> 
-        └── xgb_model.py                            -> 
+        └── logreg_model.py                         -> Modelo de Regresion Logistica
+        └── knn_model.py                            -> Modelo de K Vecinos Cercanos
+        └── dectree_model.py                        -> Modelo de Arboles de Decision
+        └── ranfor_model.py                         -> Modelo de Bosque Aleatorio
+        └── xgb_model.py                            -> Modelo XGBoost Clasificador
     ├── .gitignore                                  -> Archivos y carpetas ignorados
     ├── config.yaml                                 -> Valores de configuracion
     ├── LICENSE                                     -> Licencia de codigo abierto

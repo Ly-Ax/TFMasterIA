@@ -18,3 +18,6 @@ automl_pycaret.ipynb
 # large models
 knn_model.joblib
 ranfor_model.joblib
+
+# files
+Memoria*.*
