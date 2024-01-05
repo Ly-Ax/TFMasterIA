@@ -4,10 +4,6 @@ venv/
 # mac files
 .DS_Store
 
-# large dataset
-sba_national.csv
-sba_train.csv
-
 # compiled
 __pycache__/
 mlruns/
@@ -15,9 +11,7 @@ mlruns/
 # notebooks
 automl_pycaret.ipynb
 
-# large models
-knn_model.joblib
-ranfor_model.joblib
-
 # files
 Memoria*.*
+/data
+/models
