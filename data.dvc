@@ -1,0 +1,6 @@
+outs:
+- md5: ea9b718957dc3fe970b9829d239d21f5.dir
+  size: 537927397
+  nfiles: 11
+  hash: md5
+  path: data
