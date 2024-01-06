@@ -1,41 +1,58 @@
 import pandas as pd
+import uvicorn
+from fastapi import FastAPI
+from pydantic import BaseModel
+
 import sys
 from pathlib import Path
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-
 sys.path.append(str(Path(__file__).parents[1]))
 from classifier import classifier_models as cls_mod
 
-pred_mode = "batch"
-test_data = cls_mod.GenerateTestTrain()
-X_test, y_test = test_data.SampleData(100)
+class SmallBA(BaseModel):
+    LoanNr_ChkDgt: object
+    Name: object 
+    City: object
+    State: object
+    Zip: int
+    Bank: object
+    BankState: object
+    NAICS: int
+    ApprovalDate: object
+    ApprovalFY: object
+    Term: int
+    NoEmp: int 
+    NewExist: float
+    CreateJob: int 
+    RetainedJob: int 
+    FranchiseCode: int
+    UrbanRural: int
+    RevLineCr: object
+    LowDoc: object
+    ChgOffDate: object
+    DisbursementDate: object
+    DisbursementGross: object
+    BalanceGross: object 
+    ChgOffPrinGr: object
+    GrAppv: object
+    SBA_Appv: object
 
-if pred_mode == "batch":
-    xgb_model = cls_mod.XGBoostModel()
-    y_pred = xgb_model.XGBoostPredict(X_test)
+app = FastAPI()
+model = cls_mod.XGBoostModel()
 
-    print("Exactitud:    %.4f" % (accuracy_score(y_test, y_pred)))
-    print("Precisión:    %.4f" % (precision_score(y_test, y_pred, average="macro")))
-    print("Sensibilidad: %.4f" % (recall_score(y_test, y_pred, average="macro")))
-    print("F1-score:     %.4f" % (f1_score(y_test, y_pred, average="macro")))
+@app.get("/")
+def home():
+    return 'Classifier is ready...'
 
-if pred_mode == "single":
-    X = X_test[y_test == 1].sample(1)
-    xgb_model = cls_mod.XGBoostModel()
-    y_pred = xgb_model.XGBoostPredict(X)
-    print(y_pred)
+@app.post("/predict")
+def predict_xgboost(client:SmallBA):
+    X = dict(client)
+    X = pd.DataFrame([X])
+    pred = model.XGBoostPredict(X)
 
-    # # dic_test = X.to_dict(orient="records")
-    # # print(dic_test)    
-    # def_true = [{"State": 34, "BankState": 37, "DifState": 0, "Sector": 19, "AppYear": 43,
-    #              "AppMonth": 7, "Term": 2, "NoEmp": 3, "Secured": 0, "NewExist": 0,
-    #              "Urban": 1, "Rural": 0, "RevLine": 1, "LowDoc": 0, "GrDisburs": 189319,
-    #              "GrApprov": 100000,"ApprovSBA": 50000,"SecuredSBA": 50,}]
-    # # def_false = [{"State": 19, "BankState": 22, "DifState": 0, "Sector": 1, "AppYear": 42, 
-    # #               "AppMonth": 6, "Term": 120, "NoEmp": 7, "Secured": 0, "NewExist": 0, 
-    # #               "Urban": 1, "Rural": 0, "RevLine": 1, "LowDoc": 0, "GrDisburs": 744915, 
-    # #               "GrApprov": 290000, "ApprovSBA": 145000, "SecuredSBA": 50,}]
-    # X = pd.DataFrame(def_true)
-    # rfc_model = cls_mod.RanForModel()
-    # y_pred = rfc_model.RanForPredict(X, PreproData=False)
-    # print(y_pred)
+    return {'Prediction': str(pred[0])}
+
+# 1: {"LoanNr_ChkDgt": 9570974007, "Name": "NEW HORIZONS SOLUTIONS INC", "City": "BRENTWOOD", "State": "TN", "Zip": 37027, "Bank": "BBCN BANK", "BankState": "CA", "NAICS": 541612, "ApprovalDate": "4-Jan-06", "ApprovalFY": "2006", "Term": 61, "NoEmp": 1, "NewExist": 1.0, "CreateJob": 2, "RetainedJob": 1, "FranchiseCode": 1, "UrbanRural": 1, "RevLineCr": "0", "LowDoc": "N", "ChgOffDate": "9-Mar-08", "DisbursementDate": "31-Jan-06", "DisbursementGross": "$25,000.00 ", "BalanceGross": "$0.00 ", "ChgOffPrinGr": "$23,648.00 ", "GrAppv": "$25,000.00 ", "SBA_Appv": "$21,250.00 "}
+# 0: {"LoanNr_ChkDgt": 8002113008, "Name": "BIRMINGHAMS FLOWERS & GREENHOU", "City": "STURGEON BAY", "State": "WI", "Zip": 54235, "Bank": "BAYLAKE BANK", "BankState": "WI", "NAICS": 453110, "ApprovalDate": "23-Jan-95", "ApprovalFY": "1995", "Term": 180, "NoEmp": 5, "NewExist": 1.0, "CreateJob": 0, "RetainedJob": 0, "FranchiseCode": 1, "UrbanRural": 0, "RevLineCr": "N", "LowDoc": "N", "ChgOffDate": "nan", "DisbursementDate": "30-Apr-95", "DisbursementGross": "$130,000.00 ", "BalanceGross": "$0.00 ", "ChgOffPrinGr": "$0.00 ", "GrAppv": "$130,000.00 ", "SBA_Appv": "$110,500.00 "}
+
+if __name__ == '__main__':
+    uvicorn.run(app, host='127.0.0.1', port='8000') # http://127.0.0.1:8000

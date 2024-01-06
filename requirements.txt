@@ -13,3 +13,6 @@ tensorflow==2.15.0
 keras==2.15.0
 dvc==3.38.1
 dvc-gs==3.0.1
+uvicorn==0.25.0
+fastapi==0.108.0
+httpx==0.26.0
