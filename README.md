@@ -78,6 +78,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── clustering_models.ipynb             -> Modelos de Agrupamiento
         └── mlops/
             └── mlflow_tracking.ipynb               -> MLflow de Random Forest
+            └── fastapi_request.ipynb               -> Consumir FastAPI XGBoost
     ├── src/
         └── transform/
             └── __init__.py                         -> Convertir directorio en paquete
