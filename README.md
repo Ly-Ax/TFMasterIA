@@ -95,7 +95,8 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── ranfor_model.py                         -> Modelo de Bosque Aleatorio
         └── xgb_model.py                            -> FastAPI Modelo de XGBoost
         └── apps/
-            └── explore_data.py                     -> 
+            └── explore_data.py                     -> Streamlit para explorar datos
+            └── predict_data.py                     -> Streamlit para predicciones
     ├── .gitignore                                  -> Archivos y carpetas ignorados
     ├── config.yaml                                 -> Valores de configuracion
     ├── LICENSE                                     -> Licencia de codigo abierto
