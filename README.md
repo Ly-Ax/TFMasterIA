@@ -94,6 +94,8 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── dectree_model.py                        -> Modelo de Arboles de Decision
         └── ranfor_model.py                         -> Modelo de Bosque Aleatorio
         └── xgb_model.py                            -> FastAPI Modelo de XGBoost
+        └── apps/
+            └── explore_data.py                     -> 
     ├── .gitignore                                  -> Archivos y carpetas ignorados
     ├── config.yaml                                 -> Valores de configuracion
     ├── LICENSE                                     -> Licencia de codigo abierto
