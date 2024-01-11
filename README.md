@@ -79,12 +79,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── mlops/
             └── mlflow_tracking.ipynb               -> MLflow de Random Forest
             └── fastapi_request.ipynb               -> Consumir FastAPI XGBoost
-            └── docker_fastapi.ipynb                -> 
-    ├── docker/
-        └── app/
-            └── main.py                             -> 
-        └── Dockerfile                              -> 
-        └── requirements.txt                        -> 
+            └── docker_fastapi.ipynb                -> Consumir Contenedor Docker
     ├── src/
         └── transform/
             └── __init__.py                         -> Convertir directorio en paquete
@@ -100,9 +95,14 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── dectree_model.py                        -> Modelo de Arboles de Decision
         └── ranfor_model.py                         -> Modelo de Bosque Aleatorio
         └── xgb_model.py                            -> FastAPI Modelo de XGBoost
-        └── apps/
-            └── explore_data.py                     -> Streamlit para explorar datos
-            └── predict_data.py                     -> Streamlit para predicciones
+    ├── apps/
+        └── explore_data.py                         -> Streamlit para explorar datos
+        └── predict_data.py                         -> Streamlit para predicciones
+    ├── docker/
+        └── app/
+            └── main.py                             -> Test de Contenedor FastAPI
+        └── Dockerfile                              -> Configuracion del Contenedor
+        └── requirements.txt                        -> Librerias para el Contenedor
     ├── .gitignore                                  -> Archivos y carpetas ignorados
     ├── config.yaml                                 -> Valores de configuracion
     ├── LICENSE                                     -> Licencia de codigo abierto
