@@ -79,6 +79,12 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── mlops/
             └── mlflow_tracking.ipynb               -> MLflow de Random Forest
             └── fastapi_request.ipynb               -> Consumir FastAPI XGBoost
+            └── docker_fastapi.ipynb                -> 
+    ├── docker/
+        └── app/
+            └── main.py                             -> 
+        └── Dockerfile                              -> 
+        └── requirements.txt                        -> 
     ├── src/
         └── transform/
             └── __init__.py                         -> Convertir directorio en paquete
