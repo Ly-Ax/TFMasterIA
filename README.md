@@ -73,6 +73,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── split_data_sampling.ipynb           -> Muestreo y division de datos
             └── mlp_classifier.ipynb                -> Modelo Multi-layer Perceptron
             └── mlp_ensemble_voting.ipynb           -> MLP Meta-Ensamble por Votacion
+            └── xgboost_metrics.ipynb               -> Analisis de Metricas de XGBoost
         └── clustering/
             └── dim_reduction.ipynb                 -> Reduccion de Dimensionalidad
             └── clustering_models.ipynb             -> Modelos de Agrupamiento
@@ -80,6 +81,7 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
             └── mlflow_tracking.ipynb               -> MLflow de Random Forest
             └── fastapi_request.ipynb               -> Consumir FastAPI XGBoost
             └── docker_fastapi.ipynb                -> Consumir Contenedor Docker
+            └── model_monitoring.ipynb              -> 
     ├── src/
         └── transform/
             └── __init__.py                         -> Convertir directorio en paquete
