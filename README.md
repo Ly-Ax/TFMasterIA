@@ -97,9 +97,9 @@ Enlace al artículo: https://doi.org/10.1080/10691898.2018.1434342
         └── dectree_model.py                        -> Modelo de Arboles de Decision
         └── ranfor_model.py                         -> Modelo de Bosque Aleatorio
         └── xgb_model.py                            -> FastAPI Modelo de XGBoost
-    ├── apps/
-        └── explore_data.py                         -> Streamlit para explorar datos
-        └── predict_data.py                         -> Streamlit para predicciones
+        └── apps/
+            └── explore_data.py                         -> Streamlit para explorar datos
+            └── predict_data.py                         -> Streamlit para predicciones
     ├── docker/
         └── app/
             └── main.py                             -> Test de Contenedor FastAPI
