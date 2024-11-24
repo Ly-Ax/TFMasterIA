@@ -117,3 +117,4 @@ if __name__ == '__main__':
     main_run()
 
 # streamlit run c:/Ly-Ax/TFMasterIA/apps/predict_data.py
+# streamlit run /Users/zorromac/Documents/Ly-Ax/TFMasterIA/apps/predict_data.py
